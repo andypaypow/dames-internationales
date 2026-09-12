@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dames Internationales — 10×10</title>
+</head>
+<body>
+<div class="wrap">
+  <div class="board-card">
+    <h1>♛ Dames Internationales</h1>
+    <div class="sub">10×10 · 20 pions · règles FID (prise majoritaire obligatoire)</div>
+    <div id="board"></div>
+    <p id="status" style="margin-top:10px"></p>
+  </div>
+  <div class="side">
+    <div id="turnbox" class="turn b">⚫ Tour des Noirs</div>
+    <div class="score"><span>⚪ Blanches : <b id="sw">20</b></span><span>⚫ Noires : <b id="sb">20</b></span></div>
+    <label for="mode">Mode de jeu</label>
+    <select id="mode">
+      <option value="ai">Joueur (Blancs) vs Ordinateur</option>
+      <option value="pvp">2 joueurs (même écran)</option>
+    </select>
+    <label for="level">Niveau de l'ordinateur</label>
+    <select id="level">
+      <option value="0">Facile</option>
+      <option value="2" selected>Moyen</option>
+      <option value="4">Difficile</option>
+    </select>
+    <button id="new">Nouvelle partie</button>
+    <button id="undo">↩ Annuler le coup</button>
+    <button id="flip">🔄 Inverser le damier</button>
+    <div class="rules">
+      <b>Règles :</b> les Noirs commencent. Pions : avance diagonale, capture avant <i>et</i> arrière. Dames : déplacement et capture à distance (dames volantes). La prise est obligatoire et on doit jouer la prise <b>majoritaire</b>. Promotion en dame à la dernière rangée (uniquement si le pion s'y arrête).
+    </div>
+  </div>
+</div>
+<dialog id="end"><h2 id="endTitle"></h2><p id="endMsg"></p><br><button onclick="document.getElementById('end').close()">Fermer</button></dialog>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
+</html>
