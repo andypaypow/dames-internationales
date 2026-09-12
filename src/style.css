@@ -26,7 +26,7 @@ h1{font-size:1.4rem;text-align:center;margin-bottom:4px;background:linear-gradie
 .piece.k::before{content:"♛";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.5em;
   color:#f59e0b;text-shadow:0 1px 2px rgba(0,0,0,.6)}
 .piece:hover{transform:scale(1.07)}
-.piece.movable{outline:3px solid rgba(52,211,153,.7);outline-offset:-3px}
+.piece.taken{opacity:0;transform:scale(.25);transition:opacity .17s ease-in,transform .17s ease-in;pointer-events:none}
 .side{background:var(--panel);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:20px;width:260px;display:flex;flex-direction:column;gap:14px}
 .turn{padding:10px;border-radius:12px;text-align:center;font-weight:600;transition:.3s}
 .turn.b{background:rgba(17,24,39,.85);border:1px solid #374151}

@@ -9,6 +9,9 @@ Application web de jeu de dames internationales (10×10, 20 pions, règles FID).
 - **Exercices/solutions supprimés** (src/exercices.ts + UI) — pattern dans l'historique/memory v4 si recréation.
 - **Nouvelle sélection** : coup unique = joué direct ; multi-choix = destinations FINALES marquées, clic = rafle entière ; déselection par re-clic/clic ailleurs/Échap/clic droit ; undo conservé.
 - **Bug latent v1 corrigé** : applyMove sur capture → `{...null}` = `{}` (pièce fantôme). Fix : `nb[end] ?? nb[from]`.
+- **Bug mode 2 joueurs corrigé (Noirs immobiles au 1er coup)** : `init()` ne calculait pas `sequences = playableMoves(...)` → aucun pion noir jouable en 2 joueurs (invisible en mode IA car `aiMove()` joue direct). Fix dans `src/app.ts:init()`.
+- **Rafle animée pion après pion** : `playMove` async — pour une capture, la pièce saute case par case (clone du plateau `work` rendu à chaque étape) et chaque pion sauté fond (classe `.piece.taken` → opacity/scale) avant le saut suivant ; applyMove(b0, m) final (promotion uniquement à l'arrêt). Flag `animating` bloque clics/undo. IA passe aussi par `playMove`.
+- **Surbrillance des pions déplaçables supprimée** (`.movable` + `showMovable()` retirés) — reste : `.sel` (pion sélectionné) + `.move`/`.capt-land` (cases d'arrivée).
 - Build hashé = cache-busting CF auto. nginx nosniff. **Validé + commités** : `fd2bafd` (v2) + `eeac081` (cleanup — handoff et backups v1 supprimés).
 
 ## 📜 Historique (v1-v4 — 1 fichier)
