@@ -9,8 +9,7 @@ Application web de jeu de dames internationales (10×10, 20 pions, règles FID).
 - **Exercices/solutions supprimés** (src/exercices.ts + UI) — pattern dans l'historique/memory v4 si recréation.
 - **Nouvelle sélection** : coup unique = joué direct ; multi-choix = destinations FINALES marquées, clic = rafle entière ; déselection par re-clic/clic ailleurs/Échap/clic droit ; undo conservé.
 - **Bug latent v1 corrigé** : applyMove sur capture → `{...null}` = `{}` (pièce fantôme). Fix : `nb[end] ?? nb[from]`.
-- Build hashé = cache-busting CF auto. nginx nosniff. Backup v1 : `/var/www/dames/index.html.v1.bak` + `app/index.html` (à supprimer après validation).
-- Commit git retenu jusqu'à validation utilisateur. Handoff : `handoff-vite-ts.md`.
+- Build hashé = cache-busting CF auto. nginx nosniff. **Validé + commités** : `fd2bafd` (v2) + `eeac081` (cleanup — handoff et backups v1 supprimés).
 
 ## 📜 Historique (v1-v4 — 1 fichier)
 - Règles FID : prise obligatoire + majoritaire (récursif), pions avant/arrière, dames volantes, promotion si arrêt dernière rangée, Noirs commencent.
