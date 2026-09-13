@@ -1,0 +1,136 @@
+[
+ {
+  "id": "39.1",
+  "cat": "⚔️ Tactique fins de parties",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   14,
+   26,
+   28
+  ],
+  "w": [
+   25,
+   35
+  ],
+  "wd": [
+   34
+  ],
+  "coups": "25-20 14x25 35-30",
+  "solTxt": "25-20 14x25 35-30 + (la dame 34 verrouille ; combinaison du cours p.47 : 37-31 26x37 27-21 16x27 4x15)"
+ },
+ {
+  "id": "39.2",
+  "cat": "⚔️ Tactique fins de parties",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   25,
+   35,
+   45
+  ],
+  "w": [
+   34,
+   42,
+   44,
+   49
+  ],
+  "wd": [
+   2
+  ],
+  "coups": "34-30 35x24 2x30 25x34 44-39 34x43 49-38",
+  "solTxt": "34-30 35x24 2x30 25x34 44-39 34x43 49-38 (le livre « 49x47 » : coup calme, dame 2 + pions dominent) +",
+  "note": "« x » du livre = souvent coups calmes en ch.39 ; finale rejouée au moteur."
+ },
+ {
+  "id": "39.3",
+  "cat": "⚔️ Tactique fins de parties",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   21
+  ],
+  "bd": [
+   6
+  ],
+  "w": [
+   16,
+   22,
+   27,
+   28
+  ],
+  "wd": [
+   35
+  ],
+  "coups": "16-11 21x23 35-40",
+  "solTxt": "16-11 21x23 (variante du livre, valide ; « 21x5 » illégal au moteur) 35-40 +",
+  "note": "Branche principale du livre (21x5) illégale — variante (21x23) retenue."
+ },
+ {
+  "id": "39.4",
+  "cat": "⚔️ Tactique fins de parties",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   14
+  ],
+  "bd": [
+   26
+  ],
+  "w": [
+   25,
+   37,
+   38
+  ],
+  "wd": [
+   3,
+   32
+  ],
+  "coups": "3-20 26x29x15 32-19",
+  "solTxt": "3-20! 26x29x15 (rafle majoritaire forcée de la dame 26) 32-19 — ligne tronquée (la suite du livre utilise des pions noirs absents du diagramme).",
+  "note": "Suite du livre infondée (24/33 noirs absents) — tronquée comme C31.2."
+ },
+ {
+  "id": "39.6",
+  "cat": "⚔️ Tactique fins de parties",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   11,
+   12,
+   17,
+   39
+  ],
+  "w": [
+   26,
+   27
+  ],
+  "wd": [
+   49
+  ],
+  "coups": "26-21 17x26 27-21 26x17 49x16",
+  "solTxt": "26-21 17x26 27-21 26x17 49-16 +"
+ },
+ {
+  "id": "39.8",
+  "cat": "⚔️ Tactique fins de parties",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   25
+  ],
+  "bd": [
+   40
+  ],
+  "w": [
+   24,
+   34,
+   45
+  ],
+  "wd": [
+   19
+  ],
+  "coups": "34-30 25x34 19x2",
+  "solTxt": "34-30 25x34 19-2 + (menace sur la dame 40)"
+ }
+]

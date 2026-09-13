@@ -1,5 +1,5 @@
 /* GÉNÉRÉ par scripts/exo-theme.ts — ne pas éditer à la main.
- * Sources : exos.json.valides de exercices-wip/ (thèmes : aile30, autres, damepions34, enfermes, opposition33, piege38) */
+ * Sources : exos.json.valides de exercices-wip/ (thèmes : aile30, autres, damepions34, enfermes, opposition33, piege38, tactique39) */
 import type { Exo } from './exercices';
 
 export const EXOS_THEMES: Exo[] = [
@@ -172,4 +172,32 @@ export const EXOS_THEMES: Exo[] = [
     b: [26, 39], w: [27, 36],
     paths: [[32, 38], [39, 44], [38, 49], [44, 50], [49, 44]],
     solTxt: "32-38 39-44 (26-31 38-33 39x28 27-22 28x17 36x27) 38-49 44-50 49-44 +", wd: [32] },
+  /* ===== tactique39 ===== */
+  { id: "39.1", cat: "⚔️ Tactique fins de parties", goal: 'gain', trait: 'w',
+    b: [14, 26, 28], w: [25, 35],
+    paths: [[25, 20], [14, 25], [35, 30]],
+    solTxt: "25-20 14x25 35-30 + (la dame 34 verrouille ; combinaison du cours p.47 : 37-31 26x37 27-21 16x27 4x15)", wd: [34] },
+  { id: "39.2", cat: "⚔️ Tactique fins de parties", goal: 'gain', trait: 'w',
+    b: [25, 35, 45], w: [34, 42, 44, 49],
+    paths: [[34, 30], [35, 24], [2, 30], [25, 34], [44, 39], [34, 43], [49, 38]],
+    solTxt: "34-30 35x24 2x30 25x34 44-39 34x43 49-38 (le livre « 49x47 » : coup calme, dame 2 + pions dominent) +",
+    note: "« x » du livre = souvent coups calmes en ch.39 ; finale rejouée au moteur.", wd: [2] },
+  { id: "39.3", cat: "⚔️ Tactique fins de parties", goal: 'gain', trait: 'w',
+    b: [21], w: [16, 22, 27, 28],
+    paths: [[16, 11], [21, 32, 23], [35, 40]],
+    solTxt: "16-11 21x23 (variante du livre, valide ; « 21x5 » illégal au moteur) 35-40 +",
+    note: "Branche principale du livre (21x5) illégale — variante (21x23) retenue.", bd: [6], wd: [35] },
+  { id: "39.4", cat: "⚔️ Tactique fins de parties", goal: 'gain', trait: 'w',
+    b: [14], w: [25, 37, 38],
+    paths: [[3, 20], [26, 42, 29, 15], [32, 19]],
+    solTxt: "3-20! 26x29x15 (rafle majoritaire forcée de la dame 26) 32-19 — ligne tronquée (la suite du livre utilise des pions noirs absents du diagramme).",
+    note: "Suite du livre infondée (24/33 noirs absents) — tronquée comme C31.2.", bd: [26], wd: [3, 32] },
+  { id: "39.6", cat: "⚔️ Tactique fins de parties", goal: 'gain', trait: 'w',
+    b: [11, 12, 17, 39], w: [26, 27],
+    paths: [[26, 21], [17, 26], [27, 21], [26, 17], [49, 16]],
+    solTxt: "26-21 17x26 27-21 26x17 49-16 +", wd: [49] },
+  { id: "39.8", cat: "⚔️ Tactique fins de parties", goal: 'gain', trait: 'w',
+    b: [25], w: [24, 34, 45],
+    paths: [[34, 30], [25, 34], [19, 2]],
+    solTxt: "34-30 25x34 19-2 + (menace sur la dame 40)", bd: [40], wd: [19] },
 ];

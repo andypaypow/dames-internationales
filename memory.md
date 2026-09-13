@@ -29,35 +29,32 @@ Application web de jeu de dames internationales (10×10, 20 pions, règles FID).
   avec la solution du livre. Pion empilé dans le diagramme = DAME (wd/bd).
 - En ligne (bundle index-BmWMXD5T.js, 83/83 tests).
 
+## ✅ État (v17 — ⚔️ Tactique fins de parties, 24801 ch.39)
+- **v17** : +6 exos « ⚔️ Tactique fins de parties » (24801 p.47-48, sol p.55) :
+  39.1 (dame 34), 39.2 (dame 2), 39.3 (dames 6b/35), 39.4 (dames 3/32 + dame 26b),
+  39.6 (dame 49), 39.8 (dames 19/40b). **39.5 écarté** (solution livre incohérente,
+  pas de gain forcé démontré) ; 39.7 sans diagramme. Thème exercices-wip/tactique39/.
+- Leçons v17 (→ skill /exercices-dames) : en ch.39 le « x » du livre est souvent un
+  coup CALME (49x16, 19x2, 25x34, 50x17 rejoués sans prise) ; rafle majoritaire
+  forcée → ligne livre tronquée (39.4 : 26x29x15) ; variante alternative retenue
+  quand la branche principale est illégale (39.3 : 21x23 au lieu de 21x5).
+- En ligne (bundle index-BoQ8gAg3.js, 89/89 tests).
+
 ## 📜 États v7-v15 (condensé — détails dans git log et skill /exercices-dames)
-- **v15** (commit 8cd1341) : fix gel exercices (exoSchedule désync → sequences vides ;
-  jetons playGen/exoRun contre reset/⏮/↩ pendant une rafle animée) · ▶ Solution auto
-  (devient ⏸ Stop) · vitesse 🐌-🚀 0,25×-5× · 🔁 Repeat (rejeu auto 2 s) · statut
-  « 🚫 Plus aucun coup légal ». E2E Playwright (Chrome système) OK.
-- **v14** : boutons flottants 📚 (menu arborescent thèmes/exos) + 💡 (indice, bulle,
-  déplaçable) ; swipe damier (50px, ratio 1.6) + double-clic coins PC ;
-  CSS `[hidden]{display:none!important}` (le flex des cartes écrasait hidden).
-  ⚠️ Leçon : retirer un bouton HTML sans son handler $().onclick casse TOUT le JS.
-- **v13** : +16 exos 24801 (33.x opposition, 34.x dame v pions) ; support DAMES bd/wd.
-- **v12** : +4 exos C31.x enfermés (C31.3/6/7/8 écartés, transcriptions douteuses).
-- **v11** : +8 exos C30.x aile droite ; `check` accepte la notation ABRÉGÉE du livre
-  (sous-séquence, arrivée finale égale, rafle majoritaire la plus courte).
-- **v10** : +2 exos AUT.161/162 (diag 162 : 30 blanc absent au départ, formé par 34-30).
-- **v9c pipeline** : `scripts/exo-theme.ts` (render/init/show/check/merge/deploy) —
-  workflow : render → lecture images → exos.json → check (0 rejet) → merge → deploy.
-- **v9** : +10 exos « Les enchaînements » (FFJD) M./A. via valide-enchainements.ts.
-  ⚠️ blanc 46 vide si 46-41 joué ; noir 19 absent du diag 17 ; (25x23) = 25x34x23.
-- **v9b UX** : Exo.goal 'gain' + Exo.trait ('b'|'w') ; réponse adverse AUTO tant que
-  la solution est suivie (exoAutoMove).
-- **v7/v8** : mode exercice depuis 24775 ch.21 (15 exos, C21.13 = doublon PDF) ;
-  menu exercices ; numérotation 1-50 partout. v6 = Vite+TS strict.
+- **v15** (commit 8cd1341) : fix gel exercices (exoSchedule désync, jetons playGen/exoRun
+  contre reset pendant rafle) · ▶ Solution auto · vitesse 0,25×-5× · 🔁 Repeat · E2E OK.
+- **v14** : boutons flottants 📚 (menu arborescent) + 💡 (indice) ; swipe damier ;
+  `[hidden]{display:none!important}`. ⚠️ bouton HTML retiré sans son handler = JS cassé.
+- **v13/v12/v11/v10** : +16 exos 24801 (33.x/34.x, support DAMES bd/wd) ; +4 C31.x ;
+  +8 C30.x (check accepte la notation ABRÉGÉE du livre) ; +2 AUT.161/162.
+- **v9c pipeline** : `scripts/exo-theme.ts` (render/init/show/check/merge/deploy).
+- **v9/v9b** : +10 exos FFJD ; Exo.goal 'gain' + Exo.trait ; réponse adverse AUTO.
+- **v7/v8/v6** : mode exercice 24775 ch.21 ; menu exercices ; numérotation 1-50 ; Vite+TS.
 - Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen}.ts` + `style.css`, `deploy.sh`.
   Commandes : `npm run dev` · `npm test` · `npm run deploy` (build hashé = cache-busting CF).
 - Sélection exo : coup unique = direct ; multi = destinations FINALES, clic = rafle entière.
-- Fix v1 : applyMove capture → `{...null}` pièce fantôme (fix `nb[end] ?? nb[from]`) ;
-  mode 2 joueurs : `init()` doit calculer `sequences` (sinon Noirs immobiles).
-- Rafle animée : playMove async case par case, `.piece.taken`, flag `animating` ;
-  IA passe par playMove. Pas de surbrillance movable (reste `.sel`, `.move`, `.capt-land`).
+- Fix v1 : pièce fantôme (`nb[end] ?? nb[from]`) ; 2 joueurs : `init()` doit calculer
+  `sequences`. Rafle animée playMove async, flag `animating` ; IA passe par playMove.
 
 
 ## 📜 Historique (v1-v4 — 1 fichier)
