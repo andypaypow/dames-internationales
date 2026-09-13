@@ -1,5 +1,5 @@
 /* GÉNÉRÉ par scripts/exo-theme.ts — ne pas éditer à la main.
- * Sources : exos.json.valides de exercices-wip/ (thèmes : aile30, autres, damepions34, enfermes, opposition33) */
+ * Sources : exos.json.valides de exercices-wip/ (thèmes : aile30, autres, damepions34, enfermes, opposition33, piege38) */
 import type { Exo } from './exercices';
 
 export const EXOS_THEMES: Exo[] = [
@@ -145,4 +145,31 @@ export const EXOS_THEMES: Exo[] = [
     b: [14, 35], w: [44, 50],
     paths: [[50, 45], [14, 19], [44, 39], [19, 24], [39, 34], [35, 40], [34, 30], [24, 35], [45, 34]],
     solTxt: "50-45 14-19 44-39 19-24 39-34 35-40 34-30 24x35 45x34", },
+  /* ===== piege38 ===== */
+  { id: "38.1", cat: "🪤 Créer un piège", goal: 'gain', trait: 'w',
+    b: [26, 33, 35], w: [37, 44],
+    paths: [[5, 23], [26, 31], [37, 26], [33, 38], [23, 19], [35, 40], [44, 35], [38, 43], [19, 28], [43, 49], [28, 44], [49, 40], [35, 44]],
+    solTxt: "1.5-23 (dame) 26-31 2.37-26 33-38 3.23-19! 35-40 4.44-35 38-43 5.19-28 43-49 6.28-44 49-40 7.35-44 — noirs bloqués +",
+    note: "Ligne du livre fautive (37x26, 44x35) — reconstruite et validée au moteur.", wd: [5] },
+  { id: "38.3", cat: "🪤 Créer un piège", goal: 'gain', trait: 'w',
+    b: [14, 33], w: [8, 16, 35],
+    paths: [[8, 3], [14, 19], [3, 21], [33, 39], [21, 49], [19, 23], [16, 11], [23, 28], [11, 6], [28, 32], [49, 27], [39, 44], [27, 22]],
+    solTxt: "8-3 14-19 3-21 33-39 21-49 19-23 16-11 23-28 11-6 28-32 49x27 (ou 49x21) 39-44 27-22 +", },
+  { id: "38.4", cat: "🪤 Créer un piège", goal: 'gain', trait: 'w',
+    b: [26, 36], w: [10, 13, 32, 38],
+    paths: [[13, 9], [36, 41], [9, 4], [41, 47], [4, 36], [47, 15, 4], [32, 27]],
+    solTxt: "13-9 36-41 9-4 41-47 4-36 47x4 32-27 +", },
+  { id: "38.5", cat: "🪤 Créer un piège", goal: 'gain', trait: 'w',
+    b: [12, 28, 29], w: [9, 21, 38],
+    paths: [[9, 3], [12, 17], [21, 12], [29, 33], [38, 29], [28, 32], [3, 25], [32, 38], [12, 8], [38, 43], [25, 48]],
+    solTxt: "1.9-3! (promotion-embuscade) 12-17 2.21x12 29-33 3.38x29! 28-32 4.3-25 (dame) 32-38 5.12-8 38-43 6.25-48 — noirs bloqués +",
+    note: "Solution du livre garbolée (3-25 joué trop tôt, 42-48, tritracs) — suite reconstruite au moteur.", },
+  { id: "38.7", cat: "🪤 Créer un piège", goal: 'gain', trait: 'w',
+    b: [31, 32], w: [35, 42],
+    paths: [[1, 23], [31, 37], [42, 31], [32, 38], [31, 26], [38, 43], [23, 28]],
+    solTxt: "1-23 31-37 42x31 32-38 31-26 38-43 23-28 +", wd: [1] },
+  { id: "38.8", cat: "🪤 Créer un piège", goal: 'gain', trait: 'w',
+    b: [26, 39], w: [27, 36],
+    paths: [[32, 38], [39, 44], [38, 49], [44, 50], [49, 44]],
+    solTxt: "32-38 39-44 (26-31 38-33 39x28 27-22 28x17 36x27) 38-49 44-50 49-44 +", wd: [32] },
 ];
