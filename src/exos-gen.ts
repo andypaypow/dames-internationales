@@ -1,5 +1,5 @@
 /* GÉNÉRÉ par scripts/exo-theme.ts — ne pas éditer à la main.
- * Sources : exos.json.valides de exercices-wip/ (thèmes : aile30, autres, damepions34, enfermes, opposition33, piege38, tactique39) */
+ * Sources : exos.json.valides de exercices-wip/ (thèmes : aile30, autres, damepions34, enfermes, opposition33, piege38, pratique40, tactique39) */
 import type { Exo } from './exercices';
 
 export const EXOS_THEMES: Exo[] = [
@@ -172,6 +172,32 @@ export const EXOS_THEMES: Exo[] = [
     b: [26, 39], w: [27, 36],
     paths: [[32, 38], [39, 44], [38, 49], [44, 50], [49, 44]],
     solTxt: "32-38 39-44 (26-31 38-33 39x28 27-22 28x17 36x27) 38-49 44-50 49-44 +", wd: [32] },
+  /* ===== pratique40 ===== */
+  { id: "40.1", cat: "🎯 Fins de parties pratiques", goal: 'gain', trait: 'w',
+    b: [13, 36, 37], w: [10, 23, 47],
+    paths: [[23, 18], [13, 22], [10, 5], [36, 41], [47, 36], [37, 42], [5, 37], [42, 31], [36, 27, 18]],
+    solTxt: "23-18 13x22 10-5! (dame) 36-41 47x36 37-42 5-37 42x31 36x18 +", },
+  { id: "40.2", cat: "🎯 Fins de parties pratiques", goal: 'gain', trait: 'w',
+    b: [8, 24, 29, 31, 34, 39], w: [35, 38, 42, 43, 45],
+    paths: [[45, 40], [39, 48, 37], [35, 30], [24, 35, 44]],
+    solTxt: "45-40! 39x37 35-30 24x44 (le « 1x41 + » imprimé est injouable depuis le diagramme — coquille probable du livre)",
+    note: "Tronqué à la combinaison vérifiable ; fin de livre invalide (1x41 impossible au moteur).", wd: [1] },
+  { id: "40.3", cat: "🎯 Fins de parties pratiques", goal: 'gain', trait: 'w',
+    b: [18, 41], w: [28, 29, 34],
+    paths: [[34, 30], [41, 47], [28, 22], [47, 24, 35], [22, 13], [35, 8], [2, 13]],
+    solTxt: "34-30 41-47 28-22 47x35 22x13 35x8 2x13 +", wd: [2] },
+  { id: "40.4", cat: "🎯 Fins de parties pratiques", goal: 'gain', trait: 'w',
+    b: [15, 26], w: [14, 16, 32, 36, 37, 38],
+    paths: [[32, 28], [44, 22], [6, 44], [50, 33, 42, 31], [36, 27]],
+    solTxt: "32-28! 44x22 6x44 50x31 36x27 + (raté par Tsjizjow contre Ba)", bd: [1, 44, 50], wd: [6] },
+  { id: "40.5", cat: "🎯 Fins de parties pratiques", goal: 'gain', trait: 'w',
+    b: [8, 11, 16, 21, 25, 26, 44], w: [18, 22, 27, 32, 33, 42],
+    paths: [[18, 13], [8, 19], [32, 28], [21, 32, 23], [33, 28], [23, 32], [22, 17], [11, 22], [4, 27, 49, 35, 13]],
+    solTxt: "18-13 8x19 32-28 21x23 33-28 23x32 22-17 11x22 4x13 + (raté par Dibman contre Presman)", wd: [4] },
+  { id: "40.6", cat: "🎯 Fins de parties pratiques", goal: 'gain', trait: 'w',
+    b: [25, 28, 35], w: [9, 29, 44],
+    paths: [[29, 23], [28, 19], [9, 3], [19, 23], [3, 12], [23, 28], [12, 21], [28, 33], [21, 43]],
+    solTxt: "29-23 28x19 9-3 19-23 3-12! 23-28 12-21 28-33 21-43 +", },
   /* ===== tactique39 ===== */
   { id: "39.1", cat: "⚔️ Tactique fins de parties", goal: 'gain', trait: 'w',
     b: [14, 26, 28], w: [25, 35],

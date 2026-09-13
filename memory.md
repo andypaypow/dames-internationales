@@ -40,34 +40,37 @@ Application web de jeu de dames internationales (10×10, 20 pions, règles FID).
   quand la branche principale est illégale (39.3 : 21x23 au lieu de 21x5).
 - En ligne (bundle index-BoQ8gAg3.js, 89/89 tests).
 
+## ✅ État (v18 — 🎯 Fins de parties pratiques, 24801 ch.40 — PDF 24801 terminé)
+- **v18** : +6 exos « 🎯 Fins de parties pratiques » (24801 p.52, sol p.55) :
+  40.1-40.6 (parties réelles : Tsjizjow-Ba, Dibman-Presman…). **40.7/40.8 écartés**
+  (pas de solution imprimée, pas de gain forcé net au moteur). Thème exercices-wip/pratique40/.
+- Leçon v18 : le « 1x41 + » du livre (40.2) injouable depuis le diagramme (coquille
+  probable) → tronqué ; ⚠️ l'analyse DOIT trier les chemins comme `check`
+  (rafle majoritaire la plus courte) sinon replay divergent = conclusions fausses.
+- En ligne (bundle index-B5zEH_Tr.js, 95/95 tests).
+
 ## 📜 États v7-v15 (condensé — détails dans git log et skill /exercices-dames)
 - **v15** (commit 8cd1341) : fix gel exercices (exoSchedule désync, jetons playGen/exoRun
   contre reset pendant rafle) · ▶ Solution auto · vitesse 0,25×-5× · 🔁 Repeat · E2E OK.
 - **v14** : boutons flottants 📚 (menu arborescent) + 💡 (indice) ; swipe damier ;
   `[hidden]{display:none!important}`. ⚠️ bouton HTML retiré sans son handler = JS cassé.
-- **v13/v12/v11/v10** : +16 exos 24801 (33.x/34.x, support DAMES bd/wd) ; +4 C31.x ;
-  +8 C30.x (check accepte la notation ABRÉGÉE du livre) ; +2 AUT.161/162.
+- **v13/v12/v11/v10** : +16 exos 24801 (33.x/34.x, DAMES bd/wd) ; +4 C31.x ; +8 C30.x ;
+  +2 AUT.161/162.
 - **v9c pipeline** : `scripts/exo-theme.ts` (render/init/show/check/merge/deploy).
 - **v9/v9b** : +10 exos FFJD ; Exo.goal 'gain' + Exo.trait ; réponse adverse AUTO.
-- **v7/v8/v6** : mode exercice 24775 ch.21 ; menu exercices ; numérotation 1-50 ; Vite+TS.
-- Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen}.ts` + `style.css`, `deploy.sh`.
-  Commandes : `npm run dev` · `npm test` · `npm run deploy` (build hashé = cache-busting CF).
+- **v7/v8/v6** : mode exercice 24775 ch.21 ; numérotation 1-50 ; Vite+TS strict.
+- Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen}.ts` · `npm run dev/test/deploy` (build hashé).
 - Sélection exo : coup unique = direct ; multi = destinations FINALES, clic = rafle entière.
-- Fix v1 : pièce fantôme (`nb[end] ?? nb[from]`) ; 2 joueurs : `init()` doit calculer
-  `sequences`. Rafle animée playMove async, flag `animating` ; IA passe par playMove.
+- Fix v1 : pièce fantôme (`nb[end] ?? nb[from]`) ; `init()` doit calculer `sequences` ;
+  rafle animée playMove async, flag `animating` ; IA passe par playMove.
 
 
-## 📜 Historique (v1-v4 — 1 fichier)
-- Règles FID : prise obligatoire + majoritaire (récursif), pions avant/arrière, dames volantes, promotion si arrêt dernière rangée, Noirs commencent.
-- Modes : Blancs vs IA (minimax alpha-bêta, 3 niveaux) · 2 joueurs même écran. Undo + fin de partie + inversion damier.
-- v3/v4 exercices « coup du talon » (5 entraînement + 2 PDF Doubovy) : supprimés en v6. Convention cases 1-50 : r=floor((n-1)/5) ; r pair c=2k+1, impair c=2k.
-- `app/index.html` : app autonome (HTML/CSS/JS, zéro dépendance).
-- Règles implémentées : prise obligatoire + majoritaire (récursif, multi-sauts),
-  pions capturent avant/arrière, dames volantes (portée illimitée, interdiction
-  de sauter 2× la même pièce), promotion en dame (si arrêt sur dernière rangée),
-  les Noirs commencent.
-- Modes : Joueur (Blancs) vs IA (minimax alpha-bêta, 3 niveaux) · 2 joueurs même écran.
-- Boutons : nouvelle partie, annuler coup. Détection fin de partie (plus de coups).
+## 📜 Historique v1-v4 (condensé)
+- Règles FID : prise obligatoire + majoritaire (récursif), pions avant/arrière, dames
+  volantes, promotion si arrêt dernière rangée, Noirs commencent. IA minimax α-β 3 niveaux
+  · 2 joueurs · Undo · fin de partie · inversion damier 🔄.
+- v3/v4 : exercices « coup du talon » + PDF Doubovy (supprimés en v6). Cases 1-50 →
+  (r,c) : r=(n-1)/5 ; r pair c=2k+1, impair c=2k.
 
 ## 🌐 Service
 - **URL publique : https://dames.filtreexpert.org** (Cloudflare proxied, Flexible SSL → nginx :80)

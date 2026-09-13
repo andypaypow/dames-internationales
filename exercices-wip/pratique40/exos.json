@@ -1,0 +1,141 @@
+[
+ {
+  "id": "40.1",
+  "cat": "🎯 Fins de parties pratiques",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   13,
+   36,
+   37
+  ],
+  "w": [
+   10,
+   23,
+   47
+  ],
+  "coups": "23-18 13x22 10-5 36-41 47x36 37-42 5-37 42x31 36x18",
+  "solTxt": "23-18 13x22 10-5! (dame) 36-41 47x36 37-42 5-37 42x31 36x18 +"
+ },
+ {
+  "id": "40.2",
+  "cat": "🎯 Fins de parties pratiques",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   24,
+   29,
+   31,
+   34,
+   39
+  ],
+  "w": [
+   35,
+   38,
+   42,
+   43,
+   45
+  ],
+  "wd": [
+   1
+  ],
+  "coups": "45-40 39x37 35-30 24x44",
+  "solTxt": "45-40! 39x37 35-30 24x44 (le « 1x41 + » imprimé est injouable depuis le diagramme — coquille probable du livre)",
+  "note": "Tronqué à la combinaison vérifiable ; fin de livre invalide (1x41 impossible au moteur)."
+ },
+ {
+  "id": "40.3",
+  "cat": "🎯 Fins de parties pratiques",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   18,
+   41
+  ],
+  "w": [
+   28,
+   29,
+   34
+  ],
+  "wd": [
+   2
+  ],
+  "coups": "34-30 41-47 28-22 47x35 22x13 35x8 2x13",
+  "solTxt": "34-30 41-47 28-22 47x35 22x13 35x8 2x13 +"
+ },
+ {
+  "id": "40.4",
+  "cat": "🎯 Fins de parties pratiques",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   15,
+   26
+  ],
+  "bd": [
+   1,
+   44,
+   50
+  ],
+  "w": [
+   14,
+   16,
+   32,
+   36,
+   37,
+   38
+  ],
+  "wd": [
+   6
+  ],
+  "coups": "32-28 44x22 6x44 50x31 36x27",
+  "solTxt": "32-28! 44x22 6x44 50x31 36x27 + (raté par Tsjizjow contre Ba)"
+ },
+ {
+  "id": "40.5",
+  "cat": "🎯 Fins de parties pratiques",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   11,
+   16,
+   21,
+   25,
+   26,
+   44
+  ],
+  "w": [
+   18,
+   22,
+   27,
+   32,
+   33,
+   42
+  ],
+  "wd": [
+   4
+  ],
+  "coups": "18-13 8x19 32-28 21x23 33-28 23x32 22-17 11x22 4x13",
+  "solTxt": "18-13 8x19 32-28 21x23 33-28 23x32 22-17 11x22 4x13 + (raté par Dibman contre Presman)"
+ },
+ {
+  "id": "40.6",
+  "cat": "🎯 Fins de parties pratiques",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   25,
+   28,
+   35
+  ],
+  "w": [
+   9,
+   29,
+   44
+  ],
+  "coups": "29-23 28x19 9-3 19-23 3-12 23-28 12-21 28-33 21-43",
+  "solTxt": "29-23 28x19 9-3 19-23 3-12! 23-28 12-21 28-33 21-43 +"
+ }
+]
