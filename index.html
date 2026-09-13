@@ -31,7 +31,15 @@
         <button id="exoNext" title="Exercice suivant">▶|</button>
       </div>
       <div class="exo-nav">
-        <button id="exoSolution" title="Revoir la combinaison complète">▶ Voir la solution</button>
+        <button id="exoSolution" title="Rejouer la combinaison complète automatiquement">▶ Solution auto</button>
+        <button id="exoRepeat" title="Répéter la solution en boucle (repart après chaque réussite)">🔁</button>
+        <select id="exoSpeed" title="Vitesse de l'enchaînement automatique">
+          <option value="2800">🐌 0,25×</option>
+          <option value="1400">🐢 0,5×</option>
+          <option value="700" selected>▶ 1×</option>
+          <option value="350">⚡ 2×</option>
+          <option value="150">🚀 5×</option>
+        </select>
       </div>
       <div id="exoMoves" class="exo-moves"></div>
       <div id="exoSol" class="exo-sol" hidden></div>

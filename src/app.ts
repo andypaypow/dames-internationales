@@ -25,6 +25,7 @@ let redoStack: { board: Board; turn: Col; matched?: boolean }[] = [];
 let gameOver = false;
 let aiThinking = false;
 let animating = false;
+let playGen = 0;        // jeton du coup en cours d'animation : annulé par un reset/undo/redo
 let lastMove: Move | null = null;   // dernier coup joué (surbrillance départ + arrivée)
 
 /* ---------- mode exercices (Coups de Dame) ---------- */
@@ -34,6 +35,8 @@ let exoAuto = 0;       // >0 : enchaînement automatique de la solution (replay)
 let exoLock = false;   // verrou pendant l'attente d'un coup automatique
 let exoAutoMove = false;  // le coup en cours d'évaluation a été joué automatiquement (réponse de la solution)
 let exoGen = 0;           // génération d'exercice : invalide les coups automatiques programmés avant un chargement
+let exoRun = 0;           // génération de l'enchaînement auto : ⏸ Stop invalide la réponse programmée SANS recharger
+let exoRepeat = false;    // 🔁 rejouer la solution en boucle après chaque réussite
 let exoStack: boolean[] = [];  // par coup joué : faisait-il partie de la solution ?
 let exoHints = 0;      // nombre d'indices révélés
 let exoMenuMoves: Move[] = []; // coups légaux du menu
@@ -158,6 +161,8 @@ function exoBuildMenu(): void {
 function exoReset(): void {
   const e = exo();
   exoGen++;                 // annule toute réponse automatique programmée pour l'exercice précédent
+  exoRun++;                 // …et tout enchaînement ⏶ Solution auto en cours
+  playGen++;                // …et toute animation de coup encore en vol
   board = Array.from({ length: N }, () => Array<Piece | null>(N).fill(null)) as Board;
   for (const n of e.b) { const [r, c] = caseToRc(n); board[r][c] = { col: 'b', k: false }; }
   for (const n of e.w) { const [r, c] = caseToRc(n); board[r][c] = { col: 'w', k: false }; }
@@ -172,6 +177,7 @@ function exoReset(): void {
   exoBuildMenu();
   $('exoSol').hidden = true; $('exoSol').textContent = '';
   $('exoFabTxt').hidden = true;
+  exoAutoUI();
   turn = e.trait ?? 'w';
   sequences = playableMoves(board, turn);   // jeu libre : tout le damier est jouable
   render(); updateUI();
@@ -184,25 +190,51 @@ function exoReset(): void {
     : '⚪ Aux Blancs de jouer — trouvez la combinaison qui fait une dame !');
 }
 
+/** Délai (ms) entre les demi-coups de l'enchaînement auto (réglable ▶/⚡/🚀). */
+const exoDelay = (): number => +$sel('exoSpeed').value;
+
 function exoSchedule(): void {
   const path = exo().paths[exoStep];
   const gen = exoGen;
+  const run = exoRun;
   exoLock = true;
   setTimeout(() => {
-    if (gen !== exoGen) return;   // l'exercice a changé entre-temps : coup abandonné
+    // ⏸ Stop ou changement d'exercice : on rend la main SANS laisser de verrou.
+    if (gen !== exoGen || run !== exoRun) {
+      exoLock = false; exoAutoMove = false;
+      sequences = playableMoves(board, turn);
+      updateUI(); exoRenderMenu(); exoRenderHints();
+      return;
+    }
     const mv = exoFindMove(path);
     if (mv) { exoAutoMove = true; void playMove(mv); return; }
+    // Désynchronisé : le verrou doit sauter ET les coups légaux doivent être
+    // recalculés (sinon le damier semble gelé : « Ce pion ne peut pas bouger »).
     exoLock = false; exoAuto = 0; exoAutoMove = false;
-    status('⚠️ Désynchronisé — ⏮ Départ');
-  }, 700);
+    sequences = playableMoves(board, turn);
+    updateUI(); exoRenderMenu(); exoRenderHints();
+    status('⚠️ Coup suivant indisponible dans cette position — jeu libre (↩ pour revenir, ⏮ Départ)');
+  }, exoDelay());
 }
 
 function exoSuccess(): void {
   exoAuto = 0; exoLock = false;
+  exoAutoUI();
   sequences = []; exoRenderMenu();
   updateUI();
   const ok = exo().goal === 'mat' ? 'Adversaire bloqué — mat' : exo().goal === 'gain' ? 'Combinaison réalisée' : 'Dame réalisée';
   status(`🎉 Bravo ! ${ok} — exercice ${exo().goal === 'mat' ? 'M' : exo().goal === 'gain' ? 'G' : 'C'} ${exo().id} réussi.`);
+  // 🔁 Repeat : repart automatiquement du diagramme et rejoue la solution
+  if (exoRepeat) {
+    const gen = exoGen, run = exoRun;
+    setTimeout(() => {
+      if (!exoRepeat || gen !== exoGen || run !== exoRun) return;   // Stop / exo changé / repeat off
+      exoReset();
+      exoAuto = exo().paths.length;
+      exoAutoUI();
+      exoSchedule();
+    }, 2000);
+  }
 }
 
 /** Menu des coups : liste les coups légaux du trait, cliquables. */
@@ -252,6 +284,8 @@ function exoRenderHints(): void {
 /** Retour en arrière d'un coup (mode exercice) : je libre complet. */
 function exoUndo(): void {
   if (!history.length || animating || exoLock) return;
+  playGen++;                       // annule toute animation en vol
+  exoRun++;                        // stoppe un éventuel enchaînement auto
   const h = history.pop()!;
   const wasMatched = exoStack.pop() ?? false;
   redoStack.push({ board: clone(board), turn, matched: wasMatched });
@@ -281,9 +315,10 @@ function exoJudge(m: Move): void {
     exoAutoMove = false;
     exoStack.push(true);
     exoStep++;
+    exoLock = false;   // la réponse auto est jouée : le joueur reprend la main
     if (exoStep >= exo().paths.length) { exoSuccess(); return; }
     if (exoAuto > 0) { exoAuto--; exoSchedule(); return; }
-    status(`🤖 ${turn === 'w' ? 'Noirs' : 'Blancs'} répondent ${fmtPath(expected)} — à vous de continuer`);
+    status(`🤖 ${turn === 'w' ? 'Noirs' : 'Blancs'} viennent de répondre ${fmtPath(expected)} — à vous de jouer`);
     sequences = playableMoves(board, turn);
     updateUI(); exoRenderMenu(); exoRenderHints();
     return;
@@ -306,6 +341,9 @@ function exoJudge(m: Move): void {
     status(`⚠️ ${fmtPath([from, to])} s'écarte de la solution — jeu libre, ↩ pour revenir`);
   }
   sequences = playableMoves(board, turn);
+  if (!sequences.length) {
+    status(`🚫 Plus aucun coup légal pour les ${turn === 'w' ? 'Blancs' : 'Noirs'} — ↩ Annuler le coup ou ⏮ Départ`);
+  }
   updateUI(); exoRenderMenu(); exoRenderHints();
 }
 
@@ -350,6 +388,7 @@ function highlight(): void {
  * disparaît (fondu) au moment où il est sauté, avant le saut suivant.
  */
 async function playMove(m: Move): Promise<void> {
+  const gen = ++playGen;   // un reset/undo/redo pendant l'animation invalide ce coup
   history.push({ board: clone(board), turn });
   lastMove = m;
   redoStack = [];   // un nouveau coup invalide le rétablissement
@@ -364,16 +403,19 @@ async function playMove(m: Move): Promise<void> {
       work[s.r][s.c] = work[cur[0]][cur[1]];
       work[cur[0]][cur[1]] = null;
       board = clone(work); render();
+      if (gen !== playGen) { animating = false; return; }   // annulé (reset/undo) : on ne touche plus à rien
       if (s.cap) {
         // la pièce sautée s'efface, puis disparaît du plateau
         const el = (boardEl.children[s.cap.r * N + s.cap.c] as HTMLElement).querySelector('.piece');
         el?.classList.add('taken');
         await wait(170);
+        if (gen !== playGen) { animating = false; return; }
         work[s.cap.r][s.cap.c] = null;
         board = clone(work); render();
       }
       cur = [s.r, s.c];
       await wait(180);
+      if (gen !== playGen) { animating = false; return; }
     }
     animating = false;
   }
@@ -475,6 +517,7 @@ boardEl.addEventListener('contextmenu', e => { e.preventDefault(); deselect(); }
 
 /* ---------- boutons ---------- */
 function init(): void {
+  playGen++;   // annule toute animation en vol d'un coup précédent
   if (exoMode()) { exoLoad(exoIndex); return; }
   board = initBoard();
   turn = 'b'; selected = null; history = []; redoStack = []; gameOver = false; aiThinking = false; animating = false; lastMove = null;
@@ -515,6 +558,8 @@ $('undo').onclick = () => {
 $('redo').onclick = () => {
   if (exoMode()) {
     if (!redoStack.length || animating || exoLock) return;
+    playGen++;                     // annule toute animation en vol
+    exoRun++;                      // stoppe un éventuel enchaînement auto
     const h = redoStack.pop()!;
     history.push({ board: clone(board), turn });
     exoStack.push(h.matched ?? false);
@@ -602,6 +647,16 @@ fab.addEventListener('pointerup', (ev) => {
   status(`💡 Coup n°${exoStep + 1} révélé — jouez-le (surligné dans le menu)`);
 });
 
+/* ---------- 🔁 Repeat : la solution se rejoue en boucle après chaque réussite ---------- */
+$('exoRepeat').onclick = () => {
+  exoRepeat = !exoRepeat;
+  $('exoRepeat').classList.toggle('on', exoRepeat);
+  $('exoRepeat').title = exoRepeat ? 'Désactiver la répétition en boucle' : 'Répéter la solution en boucle (repart après chaque réussite)';
+  status(exoRepeat
+    ? '🔁 Repeat activé — après chaque réussite, la solution repart automatiquement (⏸ pour arrêter)'
+    : '🔁 Repeat désactivé');
+};
+
 /* ---------- gestes : swipe gauche/droite (mobile) + double-clic coins (PC) ---------- */
 let gX0 = 0, gY0 = 0, gT0 = 0;
 boardEl.addEventListener('touchstart', (e) => {
@@ -625,15 +680,34 @@ boardEl.addEventListener('dblclick', (e) => {
 $('exoPrev').onclick = () => { if (!exoLock && !animating) exoLoad(exoIndex - 1); };
 $('exoNext').onclick = () => { if (!exoLock && !animating) exoLoad(exoIndex + 1); };
 $('exoReset').onclick = () => { if (!exoLock && !animating) exoReset(); };
-$('exoSolution').onclick = () => {
-  if (exoLock || animating) return;
+/* ---------- ▶ Solution auto : rejoue toute la combinaison, ⏸ Stop pour reprendre la main ---------- */
+const exoSolBtn = $('exoSolution') as HTMLButtonElement;
+function exoAutoUI(): void {
+  exoSolBtn.textContent = exoAuto > 0 ? '⏸ Stop' : '▶ Solution auto';
+  exoSolBtn.title = exoAuto > 0 ? 'Arrêter l\'enchaînement et jouer librement' : 'Rejouer la combinaison complète automatiquement';
+}
+exoSolBtn.onclick = () => {
+  if (animating) return;
+  if (exoAuto > 0) {
+    // ⏸ Stop : on garde la position telle quelle et on rend la main immédiatement.
+    exoAuto = 0; exoRun++;
+    exoRepeat = false; $('exoRepeat').classList.remove('on');
+    exoLock = false; exoAutoMove = false;
+    sequences = playableMoves(board, turn);
+    exoAutoUI(); updateUI(); exoRenderMenu(); exoRenderHints();
+    status('⏸ Enchaînement arrêté — à vous de jouer (jeu libre)');
+    return;
+  }
+  if (exoLock) return;
   const e = exo();
   $('exoSol').textContent = 'Solution : ' + e.solTxt;
   $('exoSol').hidden = false;
   exoReset();
   exoAuto = e.paths.length;        // tout le reste de la combinaison est joué automatiquement
+  exoAutoUI();
   exoSchedule();
 };
+
 $sel('mode').addEventListener('change', () => exoShowPanel(exoMode()));
 
 init();

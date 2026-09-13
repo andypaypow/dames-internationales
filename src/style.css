@@ -78,6 +78,9 @@ dialog h2{color:#fbbf24;margin-bottom:10px}
 .exo-goal{font-size:.72rem;line-height:1.5;opacity:.85}
 .exo-nav{display:flex;gap:6px}
 .exo-nav button{flex:1;padding:8px;font-size:.8rem}
+.exo-nav #exoRepeat{flex:0 0 auto;min-width:44px}
+.exo-nav #exoRepeat.on{background:var(--sel);color:#06202a;border-color:var(--sel);box-shadow:0 0 10px var(--sel)}
+#exoSpeed{flex:0 0 auto;width:auto;padding:6px 8px;font-size:.75rem;border-radius:10px}
 .exo-sol{font-size:.72rem;line-height:1.5;background:rgba(0,0,0,.3);border-radius:10px;padding:8px;color:#a7f3d0}
 
 .exo-moves{display:flex;flex-wrap:wrap;gap:5px;min-height:26px}
