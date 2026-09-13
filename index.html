@@ -20,7 +20,22 @@
     <select id="mode">
       <option value="ai">Joueur (Blancs) vs Ordinateur</option>
       <option value="pvp">2 joueurs (même écran)</option>
+      <option value="exo">🎓 Exercices</option>
     </select>
+    <div id="exoPanel" hidden>
+      <div id="exoTitle" class="exo-title"></div>
+      <div id="exoGoal" class="exo-goal">🎯 Aux Blancs de jouer : trouvez la combinaison qui fait une <b>dame</b>.</div>
+      <div class="exo-nav">
+        <button id="exoPrev" title="Exercice précédent">◀</button>
+        <button id="exoReset" title="Repartir du diagramme">⏮ Départ</button>
+        <button id="exoNext" title="Exercice suivant">▶|</button>
+      </div>
+      <div class="exo-nav">
+        <button id="exoSolution" title="Revoir la combinaison complète">▶ Voir la solution</button>
+      </div>
+      <div id="exoMoves" class="exo-moves"></div>
+      <div id="exoSol" class="exo-sol" hidden></div>
+    </div>
     <label for="level">Niveau de l'ordinateur</label>
     <select id="level">
       <option value="0">Facile</option>
@@ -29,11 +44,20 @@
     </select>
     <button id="new">Nouvelle partie</button>
     <button id="undo">↩ Annuler le coup</button>
+    <button id="redo">↪ Rétablir le coup</button>
     <button id="flip">🔄 Inverser le damier</button>
     <div class="rules">
       <b>Règles :</b> les Noirs commencent. Pions : avance diagonale, capture avant <i>et</i> arrière. Dames : déplacement et capture à distance (dames volantes). La prise est obligatoire et on doit jouer la prise <b>majoritaire</b>. Promotion en dame à la dernière rangée (uniquement si le pion s'y arrête).
     </div>
   </div>
+</div>
+<div id="exoMenuFab">
+  <div id="exoMenuDrop" hidden><div id="exoMenuTree"></div></div>
+  <button id="exoMenuBtn" title="Menu des exercices">📚</button>
+</div>
+<div id="exoFab" hidden>
+  <div id="exoFabTxt" hidden></div>
+  <button id="exoHintFab" title="Indice / Solution (glissable)">💡</button>
 </div>
 <dialog id="end"><h2 id="endTitle"></h2><p id="endMsg"></p><br><button onclick="document.getElementById('end').close()">Fermer</button></dialog>
 

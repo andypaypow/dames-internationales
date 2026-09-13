@@ -25,7 +25,7 @@ export function clone(b: Board): Board {
   return b.map(row => row.map(p => (p ? { ...p } : null)));
 }
 
-/** Position initiale : Noirs rangées 0-3, Blancs rangées 6-9, cases (r+c) impair. */
+/** Position initiale : Noirs rangées 0-3, Blancs rangées 6-9, cases (r+c) pair (coin haut-gauche foncé, case 1). */
 export function initBoard(): Board {
   const b: Board = Array.from({ length: N }, () => Array<Square>(N).fill(null));
   for (let r = 0; r < 4; r++) for (let c = 0; c < N; c++) if ((r + c) % 2) b[r][c] = { col: 'b', k: false };

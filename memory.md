@@ -3,7 +3,93 @@
 ## 🎯 Projet
 Application web de jeu de dames internationales (10×10, 20 pions, règles FID).
 
-## ✅ État (v6 — 12/09/2026 : Vite+TS + exercices supprimés + nouvelle UX)
+## 📚 Sources PDF archivées (docs/)
+- `docs/24775-cours-de-jeu.pdf` (4,7 Mo) — Cours de jeu (jeudedames.toulouse),
+  ex. C21.x, C30.x aile droite (p.58-59, sol p.68), C31.x autres enfermés
+  (p.64, sol p.69). Texte : pdftotext p.2 = sommaire.
+- `docs/enchainements-gregoire-pesente-ffjd.pdf` (0,9 Mo) — « Les enchaînements »,
+  marchand de bois p.6+, aile droite p.57+, diag 161-162 p.99-100.
+  ⚠️ /tmp est volatile : repartir de ces copies (pipeline : render <pdf> …).
+
+## ✅ État (v14 — 📚💡 boutons flottants + gestes mobile, UI exercices)
+- **v14** (validé utilisateur) : UI exercices revue pour mobile/desktop :
+  - Menu exercices = **bouton flottant 📚 (bas gauche), toujours visible** dès
+    l'ouverture ; tap → dropdown arborescent (thèmes dépliables ▸/▾, compteur,
+    pastilles exos M/G/C, exo courant surligné, état dans `exoOpenCats`).
+    Choisir un exo hors mode 🎓 bascule le mode auto (`dispatchEvent('change')`).
+  - 💡 = **bouton flottant déplaçable (bas droite)**, mode exo seulement ; tap =
+    révèle le coup suivant dans une bulle au-dessus (`exoFabTxt`, pointer
+    capture, drag si >6px) ; bouton Indice retiré de la nav exercices.
+  - **Gestes** : swipe horizontal sur le damier (← revenir, → rétablir,
+    seuil 50px, ratio 1.6) ; PC : double-clic coin gauche <18% / droit >82%.
+  - CSS : `[hidden]{display:none!important}` (le display:flex des cartes
+    écrasait l'attribut hidden) ; options select stylées fond sombre.
+- ⚠️ **Leçon v14** : retirer un bouton du HTML sans retirer son handler
+  `$().onclick` casse TOUT le JS au chargement (damier + menu vides).
+  Diagnostic : Chrome headless `--dump-dom` + `--enable-logging=stderr`
+  (compter "Uncaught", vérifier 100 `.sq` / 40 `.piece`).
+- En ligne (bundle index-Cor0kPP0.js, 77/77 tests).
+
+## ✅ État (v13 — ⚖️ Opposition + 👑 Dame contre pions, PDF 24801)
+- **v13** : +16 exos depuis `docs/24801.pdf` (Fins de parties, jeudedames.toulouse) :
+  33.1-33.8 « L'opposition » (p.11, sol p.53) + 34.1-34.8 « Dame contre pions »
+  (p.18, sol p.53). Thèmes persistants exercices-wip/{opposition33,damepions34}/.
+- **Support DAMES ajouté** : Exo.bd/wd (cases des dames au départ) dans
+  exercices.ts/app.ts/exo-theme.ts (build, check, merge) + tests buildExo.
+- Transcription auto : détection pièces par pixels (crops 300 dpi, mapping
+  case = 5r+(c+1)/2 si r pair, 5r+c/2+1 si r impair ; pièces sur cases grises
+  foncées du diagramme), croisée avec les solutions texte du livre.
+- ⚠️ Solutions du livre fautives : 34.1 « 7-1 » illégal (prise par la dame
+  forcée après 19-23 → 7x29 ; suite reconstruite 15-20 29x15) ; 34.7 « 9-3 »
+  impossible (dame en 8) et suite « 20x38 » garbelée (tronquée à 14-20).
+- En ligne (bundle index-kui_6I23.js, 77/77 tests).
+
+## ✅ État (v12 — 🔒 Autres enfermés 24775 ch.31)
+- **v12** : +4 exos C31.1, C31.2, C31.4, C31.5 (validés moteur). C31.2 tronqué à
+  la rafle 22x33x44. ⚠️ C31.3/31.6/31.7/31.8 écartés : transcriptions douteuses
+  (solutions du livre parfois fautives/garbelles, ex « 22x44 » correct mais
+  « 43-39 » = « 50-39 ») — à refaire en crop 400 dpi si demandé.
+
+## ✅ État (v11 — les 8 exercices PDF 24775 « aile droite »)
+- **v11** : +8 exos C30.1→C30.8 (24775.pdf p.58-59, solutions p.68) via pipeline :
+  positions lues en crop 300 dpi (pdftoppm -x -y), solutions du livre, validées
+  moteur. `check` accepte maintenant la notation ABRÉGÉE du livre (token =
+  sous-séquence, arrivée finale égale, rafle majoritaire la plus courte retenue).
+  En ligne + thème persistant exercices-wip/aile30/.
+
+## ✅ État (v10 — catégorie 🔒 Autres enchaînements)
+- **v10** : +2 exos (chapitre conclusion, diag 161-162) via le pipeline exo-theme :
+  AUT.161 pions arrière aile gauche (30-24! 19x30 35x24) · AUT.162 trèfle
+  (34-30! ; 25-30-35 bloquent 5,14,15,19,20,24). Thème persistant dans
+  exercices-wip/autres/ (exos.json + .valide, re-fusionné à chaque merge).
+  ⚠️ diag 162 : 30 blanc ABSENT au départ (formé par 34-30) ; noir 22/162 et
+  placement 28/162b à ne pas inventer (captures forcées parasites).
+- **v9c pipeline** : `scripts/exo-theme.ts` (vite-node) = ajout semi-auto de thèmes :
+  `render pdf p1 pN <th>` (PNG) · `init <th> <cat> <goal>` · `show <th> n`
+  (coups légaux du trait) · `check <th>` (moteur → .valide, chemins majoritaires)
+  · `merge <th>` (régénère src/exos-gen.ts + branche EXOS_THEMES dans
+  exercices.ts + tsc/tests) · `deploy`. Workflow : render → lire images →
+  remplir exercices-wip/<th>/exos.json → check → merge → deploy.
+- **v9** (12/09) : +10 exercices depuis « Les enchaînements » (Grégoire/Pesente, FFJD,
+  ffjd.fr/fichiers/livres/Les_enchainements.pdf) :
+  🪵 Marchand de bois M.8,M.9,M.13,M.15,M.15b,M.17 (prise, mazette, pionnage,
+  dégagements, sortie subtile) · ➡️ Aile droite A.97,A.98,A.100,A.101.
+  Méthode : pdftoppm → lecture visuelle + positions de débuts reconstruites
+  coup par coup, TOUT validé moteur via `scripts/valide-enchainements.ts`
+  (vite-node, mapper coups livre → chemins réels prise majoritaire).
+  ⚠️ Pièges : blanc 46 vide si 46-41 joué ; noir 19 absent du diag 17
+  (sinon 19x28 forcé) ; (25x23) du livre = rafle 25x34x23 au moteur.
+- **v9b UX** : `Exo.goal` + 'gain' (menu G, statuts adaptés) + `Exo.trait`
+  ('b'|'w', défaut 'w') ; l'adversaire répond AUTO avec le demi-coup suivant
+  de la solution tant qu'on la suit (flag `exoAutoMove`, sinon jeu libre).
+- **v8** (12/09 : menu exercices + numérotation internationale 1-50 partout, voir handoff v4)
+- **v7** : mode exercice réintégré depuis PDF 24775 (jeudedames.toulouse, ch.21) :
+  `src/exercices.ts` (15 exos, chemins de rafle exacts, validés moteur) + mode `exo`
+  dans app.ts + `tests/exercices.test.ts`. Voir handoff-exercices-coups-de-dame.md.
+  ⚠️ PDF défectueux : C21.13 = doublon du 21.12 (non reproduit) ; le diagramme
+  « C 21.13 » est en réalité la position du C 21.14 ; fins de 21.5 et 21.12 recalculées.
+  Convention : case 1 = foncée en haut à gauche (Noirs 1-20 haut, Blancs 31-50 bas).
+- **v6** (12/09/2026 : Vite+TS + exercices supprimés + nouvelle UX)
 - Repo Vite + TS strict : `src/{regles,ia,app}.ts` + `style.css`, `tests/regles.test.ts` (13 ✓), `deploy.sh`, `vite.config.ts`.
 - Commandes : `npm run dev` · `npm test` · `npm run deploy`.
 - **Exercices/solutions supprimés** (src/exercices.ts + UI) — pattern dans l'historique/memory v4 si recréation.
