@@ -1,0 +1,31 @@
+[
+ {
+  "id": "16.1",
+  "cat": "🏹 Attaquer une aile",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   1,
+   3,
+   13,
+   16,
+   19,
+   20,
+   23,
+   24
+  ],
+  "w": [
+   27,
+   30,
+   32,
+   33,
+   35,
+   38,
+   43,
+   47
+  ],
+  "coups": "32-28 23x21 30-25",
+  "solTxt": "32-28 23x21 30-25",
+  "note": "FMJD Cours 1 (fr) Leçon 16, diagrammes p.62, solutions p.81 ; auto-extrait ; 16.2-16.8 écartés (solution absente ou incohérente avec le diagramme)"
+ }
+]

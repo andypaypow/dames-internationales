@@ -1,0 +1,219 @@
+[
+ {
+  "id": "C24.1",
+  "cat": "🔒 Mat / blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   12,
+   13,
+   15,
+   18,
+   19,
+   23,
+   26,
+   29
+  ],
+  "w": [
+   25,
+   27,
+   28,
+   32,
+   35,
+   37,
+   38,
+   40,
+   45
+  ],
+  "coups": "25-20 15x24 28-22",
+  "solTxt": "25-20 15x24 28-22",
+  "note": "FMJD Cours 1 (fr) Leçon 24 « Mat / bloquer l'adversaire », diagrammes p.98, solutions p.123 ; auto-extraits"
+ },
+ {
+  "id": "C24.2",
+  "cat": "🔒 Mat / blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   13,
+   14,
+   16,
+   17,
+   18,
+   19,
+   23,
+   24,
+   29
+  ],
+  "w": [
+   25,
+   26,
+   27,
+   30,
+   32,
+   33,
+   35,
+   37,
+   38
+  ],
+  "coups": "26-21 17x26 33-28",
+  "solTxt": "26-21 17x26 33-28",
+  "note": "FMJD Cours 1 (fr) Leçon 24 « Mat / bloquer l'adversaire », diagrammes p.98, solutions p.123 ; auto-extraits"
+ },
+ {
+  "id": "C24.3",
+  "cat": "🔒 Mat / blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   13,
+   14,
+   16,
+   17,
+   18,
+   19,
+   23,
+   24,
+   26
+  ],
+  "w": [
+   25,
+   27,
+   28,
+   32,
+   35,
+   37,
+   38,
+   40,
+   48
+  ],
+  "coups": "48-42 24-29 40-34 29x40 35x44 17-21 38-33",
+  "solTxt": "48-42 24-29 40-34 29x40 35x44 17-21 38-33",
+  "note": "FMJD Cours 1 (fr) Leçon 24 « Mat / bloquer l'adversaire », diagrammes p.98, solutions p.123 ; auto-extraits ; le livre donne aussi la variante 17-21 ; fin de ligne longue tronquée au légal"
+ },
+ {
+  "id": "C24.4",
+  "cat": "🔒 Mat / blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   13,
+   14,
+   16,
+   17,
+   18,
+   19,
+   23,
+   26
+  ],
+  "w": [
+   25,
+   27,
+   28,
+   32,
+   37,
+   38,
+   39,
+   44
+  ],
+  "coups": "38-33 17-21 25-20 14x25 39-34",
+  "solTxt": "38-33 17-21 25-20 14x25 39-34",
+  "note": "FMJD Cours 1 (fr) Leçon 24 « Mat / bloquer l'adversaire », diagrammes p.98, solutions p.123 ; auto-extraits"
+ },
+ {
+  "id": "C24.5",
+  "cat": "🔒 Mat / blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   23,
+   24
+  ],
+  "w": [
+   25,
+   26,
+   27,
+   28,
+   32,
+   33,
+   36,
+   38,
+   39,
+   40,
+   44
+  ],
+  "coups": "36-31 23-29 40-35",
+  "solTxt": "36-31 23-29 40-35",
+  "note": "FMJD Cours 1 (fr) Leçon 24 « Mat / bloquer l'adversaire », diagrammes p.98, solutions p.123 ; auto-extraits ; livre : (18-23 35-30) ; variante non rejouée"
+ },
+ {
+  "id": "C24.6",
+  "cat": "🔒 Mat / blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   11,
+   13,
+   14,
+   16,
+   18,
+   19,
+   21,
+   23,
+   24,
+   25,
+   26
+  ],
+  "w": [
+   22,
+   27,
+   28,
+   30,
+   32,
+   33,
+   34,
+   35,
+   37,
+   38,
+   42
+  ],
+  "coups": "33-29 24x33 38x29 14-20 42-38 20-24 29x20 25x14 30-25",
+  "solTxt": "33-29 24x33 38x29 14-20 42-38 20-24 29x20 25x14 30-25",
+  "note": "FMJD Cours 1 (fr) Leçon 24 « Mat / bloquer l'adversaire », diagrammes p.98, solutions p.123 ; auto-extraits ; le livre continue 30-25! avec blocage gagnant"
+ },
+ {
+  "id": "C24.7",
+  "cat": "🔒 Mat / blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   13,
+   16,
+   17,
+   18,
+   19,
+   23
+  ],
+  "w": [
+   26,
+   27,
+   28,
+   32,
+   34,
+   41
+  ],
+  "coups": "26-21 17x26 41-37",
+  "solTxt": "26-21 17x26 41-37",
+  "note": "FMJD Cours 1 (fr) Leçon 24 « Mat / bloquer l'adversaire », diagrammes p.98, solutions p.123 ; auto-extraits"
+ }
+]

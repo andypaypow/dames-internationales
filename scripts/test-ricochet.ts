@@ -38,7 +38,8 @@ const sameMove = (a: Move, bb: Move): boolean =>
   a.from[0] === bb.from[0] && a.from[1] === bb.from[1] &&
   a.path.length === bb.path.length && a.path.every((s, i) => s.r === bb.path[i].r && s.c === bb.path[i].c);
 
-const raw: Raw[] = JSON.parse(readFileSync('exercices-wip/ricochet07/exos.json.valide', 'utf8'));
+const theme = process.argv[2] ?? 'ricochet07';
+const raw: Raw[] = JSON.parse(readFileSync(`exercices-wip/${theme}/exos.json.valide`, 'utf8'));
 let found = 0;
 for (const e of raw) {
   // 1) bilan matériel en fin de ligne validée
