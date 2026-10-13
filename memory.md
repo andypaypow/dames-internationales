@@ -26,9 +26,8 @@ Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run d
   C10.8, C13.6, F12.7, C15.14. « x » du livre = souvent coup calme ; rafles abrégées
   (C14.6 « 47x29 » = 36x47x29).
 - Test IA (scripts/test-ricochet.ts <thème>) : miroir 180° couleurs inversées →
-  aiAnalyse prof 9. Taux de « l'IA trouve le coup du livre » : ricochet 8/8, bombe 4/8,
-  Napoléon 2/8, arche 4/8, dame15 6/16 — les 1ers coups sacrifices/préparatifs sont
-  vus comme pertes à courte vue ; le 📖 livre (buildBook) les couvre en partie.
+  aiAnalyse prof 9. Taux « IA trouve le coup du livre » : ricochet 8/8 … dame15 6/16 —
+  les 1ers coups sacrifices sont vus perdants à courte vue ; le 📖 livre les couvre.
 - Reste à faire (demande utilisateur) : TOUS les autres exercices corrigés du document
   (Leçons 1-5 C1-C5, 18-20, 21 coups de dame, 22, 23 formations + Exercices 23.x,
   25 blocage, 26+ ; C28.x marchand de bois…). Solutions disséminées p.36-38, 80-86,
@@ -52,9 +51,7 @@ Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run d
 ## ✅ État (v23 — ↔️ Coup du ricochet FMJD + 📖 livre d'exercices)
 - **v23a exercices** : +8 exos « ↔️ Coup du ricochet » (FMJD Cours 1, Leçon 7,
   diagrammes p.25, solutions p.36-37) → thème `exercices-wip/ricochet07/`.
-  Transcription des pièces AUTO (détection pixels : grille = lignes sombres,
-  fenêtre centre 28×28, disque noir dark>0.70 / blanc bright>0.75) puis relecture
-  visuelle de contrôle. 8/8 validés moteur (exo-theme check).
+  Transcription AUTO par détection pixels (détail → v25a/erreurs). 8/8 validés moteur.
   C7.2 fin garbelée reconstruite (28x26 = 28-17x26) ; C7.6 rafles noires
   développées (16x27x38, 8x13x24x30, 34x25x14x3). Image : `public/exo-img/fmjd1-25.jpg`.
 - **v23b test IA** : `scripts/test-ricochet.ts` — pour chaque exo : bilan matériel
