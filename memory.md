@@ -54,9 +54,8 @@ Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run d
   Transcription AUTO par détection pixels (détail → v25a/erreurs). 8/8 validés moteur.
   C7.2 fin garbelée reconstruite (28x26 = 28-17x26) ; C7.6 rafles noires
   développées (16x27x38, 8x13x24x30, 34x25x14x3). Image : `public/exo-img/fmjd1-25.jpg`.
-- **v23b test IA** : `scripts/test-ricochet.ts` — pour chaque exo : bilan matériel
-  de la ligne + l'IA (miroir 180° couleurs inversées → aiAnalyse prof 9/4 s)
-  trouve-t-elle le 1ᵉʳ coup du livre → **8/8**.
+- **v23b test IA** : `scripts/test-ricochet.ts <thème>` — bilan matériel + l'IA
+  (miroir 180°, prof 9/4 s) retrouve-t-elle le 1ᵉʳ coup du livre → **8/8**.
 - **v23c livre** : ia.ts — `buildBook()` : table exacte position→coup construite
   depuis TOUS les exercices validés (EXOS, chaque demi-coup). `aiAnalyse` y
   retrouve une position connue (trait 'b', prof>0) et joue le coup appris
