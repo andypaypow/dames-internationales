@@ -49,4 +49,13 @@ export const EXO_IMG: Record<string, string> = {
   '40.4': '/exo-img/24801-52.jpg',
   '40.5': '/exo-img/24801-52.jpg',
   '40.6': '/exo-img/24801-52.jpg',
+  // FMJD Cours 1 (fr), Leçon 7 — Coup du ricochet (diagrammes p.25)
+  'C7.1': '/exo-img/fmjd1-25.jpg',
+  'C7.2': '/exo-img/fmjd1-25.jpg',
+  'C7.3': '/exo-img/fmjd1-25.jpg',
+  'C7.4': '/exo-img/fmjd1-25.jpg',
+  'C7.5': '/exo-img/fmjd1-25.jpg',
+  'C7.6': '/exo-img/fmjd1-25.jpg',
+  'C7.7': '/exo-img/fmjd1-25.jpg',
+  'C7.8': '/exo-img/fmjd1-25.jpg',
 };

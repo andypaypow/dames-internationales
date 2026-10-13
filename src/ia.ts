@@ -3,7 +3,8 @@
  * itératif avec budget temps (module pur).
  * ⚠️ Convention signes : + = favorable aux NOIRS, -999 = Blancs bloqués.
  * ============================================================ */
-import { N, applyMove, playableMoves, allMoves, type Board, type Col, type Move } from './regles';
+import { N, applyMove, playableMoves, allMoves, type Board, type Col, type Move, type Piece } from './regles';
+import { EXOS, caseToRc, rcToCase } from './exercices';
 
 /** Évaluation statique : matériel + progression + centre + dames dominantes. */
 export function evalBoard(b: Board): number {
@@ -80,7 +81,54 @@ export type AiAnalysis = {
   line: Move[];                        // ligne prévue (mon coup + réponses attendues)
   oppCaps: Move[];                     // prises adverses possibles après mon coup
   pieces: [number, number];            // [pions Noirs, pions Blancs]
+  book?: boolean;                      // coup tiré du livre des exercices validés
 };
+
+/* ---------- 📖 Livre : positions des exercices validés ----------
+ * Chaque exercice validé (corrigé relu au moteur, cf. scripts/exo-theme.ts)
+ * alimente une table exacte position → coup du corrigé. Quand l'IA reconnaît
+ * une position connue (trait aux Noirs), elle y joue le coup « appris ». */
+type BookMove = { from: [number, number]; path: { r: number; c: number }[] };
+let book: Map<string, BookMove> | null = null;
+
+function serBoard(b: Board): string {
+  let s = '';
+  for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
+    const p = b[r][c];
+    s += p ? (p.col === 'b' ? 'b' : 'w') : '.';
+  }
+  return s;
+}
+
+function buildBook(): Map<string, BookMove> {
+  if (book) return book;
+  book = new Map();
+  for (const exo of EXOS) {
+    try {
+      const bd: Board = Array.from({ length: N }, () => Array<Piece | null>(N).fill(null));
+      for (const n of exo.b) { const [r, c] = caseToRc(n); bd[r][c] = { col: 'b', k: false }; }
+      for (const n of exo.w) { const [r, c] = caseToRc(n); bd[r][c] = { col: 'w', k: false }; }
+      for (const n of exo.bd ?? []) { const [r, c] = caseToRc(n); bd[r][c] = { col: 'b', k: true }; }
+      for (const n of exo.wd ?? []) { const [r, c] = caseToRc(n); bd[r][c] = { col: 'w', k: true }; }
+      let cur = bd;
+      let turn: Col = exo.trait ?? 'w';
+      for (const p of exo.paths) {
+        const mv = (playableMoves(cur, turn) as Move[]).find(m => {
+          const q = [rcToCase(m.from[0], m.from[1]), ...m.path.map(s => rcToCase(s.r, s.c))];
+          return q[0] === p[0] && q.length === p.length && q.every((n, i) => n === p[i]);
+        });
+        if (!mv) break;
+        const key = serBoard(cur) + '|' + turn;
+        if (!book!.has(key)) {
+          book!.set(key, { from: [mv.from[0], mv.from[1]], path: mv.path.map(s => ({ r: s.r, c: s.c })) });
+        }
+        cur = applyMove(cur, mv);
+        turn = turn === 'w' ? 'b' : 'w';
+      }
+    } catch { /* exercice illégal : ignoré */ }
+  }
+  return book;
+}
 
 /** Ligne prévue : chaque côté joue son meilleur coup (profondeur réduite). */
 function pvLine(b: Board, plies: number): Move[] {
@@ -107,6 +155,24 @@ function pvLine(b: Board, plies: number): Move[] {
 export function aiAnalyse(b: Board, depth: number, budgetMs = 1500): AiAnalysis | null {
   const moves = playableMoves(b, 'b');
   if (!moves.length) return null;
+  // 📖 Livre : position d'un exercice validé (ou d'une de ses suites) → coup appris
+  if (depth > 0) {
+    const bm = buildBook().get(serBoard(b) + '|b');
+    if (bm) {
+      const mv = moves.find(m => m.from[0] === bm.from[0] && m.from[1] === bm.from[1]
+        && m.path.length === bm.path.length && m.path.every((s, i) => s.r === bm.path[i].r && s.c === bm.path[i].c));
+      if (mv) {
+        const after = applyMove(b, mv);
+        return {
+          move: mv,
+          score: search(after, 'w', Math.max(4, Math.min(depth, 8)), -1e9, 1e9, QUIESC_MAX),
+          alts: [], line: pvLine(after, 5),
+          oppCaps: playableMoves(after, 'w').filter(x => x.path[0].cap != null),
+          pieces: countPieces(b), book: true,
+        };
+      }
+    }
+  }
   if (depth <= 0) {
     // Facile : coup aléatoire — la réflexion reste honnête mais minimale
     const m = moves[Math.floor(Math.random() * moves.length)];

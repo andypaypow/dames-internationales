@@ -1,138 +1,68 @@
 # Dames Internationales (bureau_de_travail/dames-international)
 
 ## 🎯 Projet
-Application web de jeu de dames internationales (10×10, 20 pions, règles FID).
+Application web de dames internationales (10×10, 20 pions, règles FID).
+Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run dev/test/deploy`.
 
 ## 📚 Sources PDF archivées (docs/)
-- `docs/24775-cours-de-jeu.pdf` (4,7 Mo) — Cours de jeu (jeudedames.toulouse),
-  ex. C21.x, C30.x aile droite (p.58-59, sol p.68), C31.x autres enfermés
-  (p.64, sol p.69). Texte : pdftotext p.2 = sommaire.
-- `docs/24801.pdf` — Fins de parties (jeudedames.toulouse) : 33.x opposition
-  (p.40, sol p.55), 34.x dame contre pions, 35-37, **38.x créer un piège
-  (exos p.40-41, sol p.55)**, 39-40. Texte : pdftotext, sommaire p.1.
-- `docs/enchainements-gregoire-pesente-ffjd.pdf` (0,9 Mo) — « Les enchaînements »,
-  marchand de bois p.6+, aile droite p.57+, diag 161-162 p.99-100.
-  ⚠️ /tmp est volatile : repartir de ces copies (pipeline : render <pdf> …).
-- 🧰 **Skill `/exercices-dames`** (skills/exercices-dames/SKILL.md) : pipeline
-  complet d'ajout d'exercices (render → lecture diagrammes → check → merge →
-  deploy) + conventions de lecture + pièges — à utiliser pour tout ajout futur.
+- `docs/24775-cours-de-jeu.pdf` — Cours de jeu (Toulouse) : C21.x, C30.x, C31.x.
+- `docs/24801.pdf` — Fins de parties : 33.x, 34.x, 38.x, 39.x, 40.x.
+- `docs/enchainements-gregoire-pesente-ffjd.pdf` — enchaînements, diag 161-162.
+- `docs/fmjd-cours1-fr.pdf` — **FMJD Cours 1 (fr)** : Leçons 1-11 (ricochet p.23-25,
+  solutions p.36-37). ⚠️ /tmp volatile : repartir de ces copies (pipeline : render <pdf>).
+- 🧰 **Skill `/exercices-dames`** : pipeline complet d'ajout d'exercices
+  (render → lecture diagrammes → check → merge → deploy) — à utiliser pour tout ajout.
 
-## 📌 Prochain ajout (en attente de l'utilisateur)
-- L'utilisateur fournira LUI-MÊME les prochains exercices (ne pas extraire soi-même).
-- Absents du site : 24775 ch.21 → C21.1-C21.16 (16 exos corrigés, sol. « Solution 21 »
-  imprimées) ; enchaînements = cours, pas de série corrigée (seuls diag 139-162 sont
-  des « exercices proprement dits »). Idée UI : badge bleu « non vérifié » tant que
-  pas dit conforme (à discuter).
+## ✅ État (v23 — ↔️ Coup du ricochet FMJD + 📖 livre d'exercices)
+- **v23a exercices** : +8 exos « ↔️ Coup du ricochet » (FMJD Cours 1, Leçon 7,
+  diagrammes p.25, solutions p.36-37) → thème `exercices-wip/ricochet07/`.
+  Transcription des pièces AUTO (détection pixels : grille = lignes sombres,
+  fenêtre centre 28×28, disque noir dark>0.70 / blanc bright>0.75) puis relecture
+  visuelle de contrôle. 8/8 validés moteur (exo-theme check).
+  C7.2 fin garbelée reconstruite (28x26 = 28-17x26) ; C7.6 rafles noires
+  développées (16x27x38, 8x13x24x30, 34x25x14x3). Image : `public/exo-img/fmjd1-25.jpg`.
+- **v23b test IA** : `scripts/test-ricochet.ts` — pour chaque exo : bilan matériel
+  de la ligne + l'IA (miroir 180° couleurs inversées → aiAnalyse prof 9/4 s)
+  trouve-t-elle le 1ᵉʳ coup du livre → **8/8**.
+- **v23c livre** : ia.ts — `buildBook()` : table exacte position→coup construite
+  depuis TOUS les exercices validés (EXOS, chaque demi-coup). `aiAnalyse` y
+  retrouve une position connue (trait 'b', prof>0) et joue le coup appris
+  (`book: true`, score = search prof 4-8, réflexion affiche « 📖 coup de livre »).
+  Tests `tests/livre.test.ts` (reconnaissance + pas de faux positif).
+- 73/73 tests (exercices 58, règles 13, livre 2).
 
-## ✅ État (v22 — 💭 Réflexion écrite de l'IA ; projet GLM/Jev ANNULÉ)
-- **Projet GLM annulé par l'utilisateur** (niveau Auto adaptatif) : service VPS
-  `dames-ai` supprimé (systemd, /opt/dames-ai, clé), code Auto retiré. Maître suffit.
-- **v22** : panneau `#aiThought` sous le sélecteur de niveau — l'IA rédige sa
-  réflexion en français depuis `aiAnalyse()` (ia.ts) : matériel, verdict d'éval
-  (+ = Noirs), coup joué + alternatives hésitées, ligne prévue (pvLine 5 demi-coups,
-  profondeur 3), prises adverses possibles après son coup. Facile = réflexion
-  minimale. `pickAiMove` remplacé par `aiAnalyse`. 63/63 tests, bundle en ligne
-  index-yQKnRMVk.js.
-
-## ✅ État (v21 — IA renforcée : quiescence + itératif + Expert/Maître)
-- **v21** : `ia.ts` refondu — quiescence sur prises (plus d'évaluation en plein
-  échange), éval enrichie (progression², centre, dames dominantes, ratio matériel),
-  approfondissement itératif avec budget temps (0.8/2/4 s selon niveau) + tri des
-  coups par score précédent (coupures α-β). Nouveaux niveaux : Expert (prof 6,
-  2 s) et Maître (prof 9, 4 s). Facile = aléatoire (inchangé). 63/63 tests,
-  bundle en ligne index-BzmjiPYl.js.
-- **v20** : `init()` appelait `aiMove()` sans vérifier le trait → l'IA (toujours
-  Noirs, cf. `pickAiMove` sur 'b') jouait au 1er coup puis re-jouait après le
-  flip de `nextTurn()`. Fix : appel supprimé (turn='w' à l'init, l'IA ne
-  déclenche QUE via `nextTurn()`). 63/63 tests, bundle en ligne index-Bk0E6puN.js.
-- 📌 Leçon : ne jamais déclencher l'IA hors de `nextTurn()` — elle joue toujours 'b'.
-
-## ✅ État (v19 — 🖼 comparaison image du livre, handoff-exo-images.md)
-- **v19** : chaque exercice affiche la page PDF source à côté du plateau
-  (`public/exo-img/` 11 JPEG, mapping `src/exo-img.ts` 48 ids, vérifié visuellement).
-  ✓ Conforme ×2 → plus d'affichage ; ✍ Remarque → dialog persisté (localStorage
-  `dames-exo-ctrl`), liste/copie via 📋 pour corrections. En ligne bundle index-BkovGIgr.js.
-- AUT.161/162 partagent la page 100 du PDF enchaînements (161+162 sur la même page).
-
-
-## ✅ État (v16 — 🪤 Créer un piège, 24801 ch.38)
-- **v16** : +6 exos « 🪤 Créer un piège » (24801 p.40-41, sol p.55) : 38.1, 38.3,
-  38.4, 38.5, 38.7 (dame blanche 1), 38.8 (dame blanche 32). 38.6 = pas de
-  diagramme dans le PDF (sauté). Thème persistant exercices-wip/piege38/.
-- Solutions du livre fautives reconstruites au moteur : 38.1 (37x26/44x35 →
-  37-26, 44-35… blocage ±999) ; 38.5 (9-3! promotion-embuscade, 3-25 dame
-  APRÈS 38x29, suite moteur 25-48 → noirs bloqués).
-- Leçon v16 : détection pixels des diagrammes non fiable (gris imprimé partiel,
-  bbox qui avale légende/voisin) → lecture VISUELLE avec overlay grille + croix
-  avec la solution du livre. Pion empilé dans le diagramme = DAME (wd/bd).
-- En ligne (bundle index-BmWMXD5T.js, 83/83 tests).
-
-## ✅ État (v17 — ⚔️ Tactique fins de parties, 24801 ch.39)
-- **v17** : +6 exos « ⚔️ Tactique fins de parties » (24801 p.47-48, sol p.55) :
-  39.1 (dame 34), 39.2 (dame 2), 39.3 (dames 6b/35), 39.4 (dames 3/32 + dame 26b),
-  39.6 (dame 49), 39.8 (dames 19/40b). **39.5 écarté** (solution livre incohérente,
-  pas de gain forcé démontré) ; 39.7 sans diagramme. Thème exercices-wip/tactique39/.
-- Leçons v17 (→ skill /exercices-dames) : en ch.39 le « x » du livre est souvent un
-  coup CALME (49x16, 19x2, 25x34, 50x17 rejoués sans prise) ; rafle majoritaire
-  forcée → ligne livre tronquée (39.4 : 26x29x15) ; variante alternative retenue
-  quand la branche principale est illégale (39.3 : 21x23 au lieu de 21x5).
-- En ligne (bundle index-BoQ8gAg3.js, 89/89 tests).
-
-## ✅ État (v18 — 🎯 Fins de parties pratiques, 24801 ch.40 — PDF 24801 terminé)
-- **v18** : +6 exos « 🎯 Fins de parties pratiques » (24801 p.52, sol p.55) :
-  40.1-40.6 (parties réelles : Tsjizjow-Ba, Dibman-Presman…). **40.7/40.8 écartés**
-  (pas de solution imprimée, pas de gain forcé net au moteur). Thème exercices-wip/pratique40/.
-- Leçon v18 : le « 1x41 + » du livre (40.2) injouable depuis le diagramme (coquille
-  probable) → tronqué ; ⚠️ l'analyse DOIT trier les chemins comme `check`
-  (rafle majoritaire la plus courte) sinon replay divergent = conclusions fausses.
-- En ligne (bundle index-B5zEH_Tr.js, 95/95 tests).
-
-## 📜 États v7-v15 (condensé — détails dans git log et skill /exercices-dames)
-- **v15** (commit 8cd1341) : fix gel exercices (exoSchedule désync, jetons playGen/exoRun
-  contre reset pendant rafle) · ▶ Solution auto · vitesse 0,25×-5× · 🔁 Repeat · E2E OK.
-- **v14** : boutons flottants 📚 (menu arborescent) + 💡 (indice) ; swipe damier ;
-  `[hidden]{display:none!important}`. ⚠️ bouton HTML retiré sans son handler = JS cassé.
-- **v13/v12/v11/v10** : +16 exos 24801 (33.x/34.x, DAMES bd/wd) ; +4 C31.x ; +8 C30.x ;
-  +2 AUT.161/162.
-- **v9c pipeline** : `scripts/exo-theme.ts` (render/init/show/check/merge/deploy).
-- **v9/v9b** : +10 exos FFJD ; Exo.goal 'gain' + Exo.trait ; réponse adverse AUTO.
-- **v7/v8/v6** : mode exercice 24775 ch.21 ; numérotation 1-50 ; Vite+TS strict.
-- Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen}.ts` · `npm run dev/test/deploy` (build hashé).
-- Sélection exo : coup unique = direct ; multi = destinations FINALES, clic = rafle entière.
-- Fix v1 : pièce fantôme (`nb[end] ?? nb[from]`) ; `init()` doit calculer `sequences` ;
-  rafle animée playMove async, flag `animating` ; IA passe par playMove.
-
-
-## 📜 Historique v1-v4 (condensé)
-- Règles FID : prise obligatoire + majoritaire (récursif), pions avant/arrière, dames
-  volantes, promotion si arrêt dernière rangée, Noirs commencent. IA minimax α-β 3 niveaux
-  · 2 joueurs · Undo · fin de partie · inversion damier 🔄.
-- v3/v4 : exercices « coup du talon » + PDF Doubovy (supprimés en v6). Cases 1-50 →
-  (r,c) : r=(n-1)/5 ; r pair c=2k+1, impair c=2k.
+## ✅ États antérieurs (condensé — détails dans git log)
+- **v22** : 💭 panneau `#aiThought` — l'IA rédige sa réflexion (matériel, verdict,
+  coup + hésitations, ligne prévue pvLine, menaces). `aiAnalyse` remplace `pickAiMove`.
+- **v21** : quiescence prises + éval enrichie + itératif budget temps ; Expert (6/2s),
+  Maître (9/4s). **v20** : fix « Noirs jouent 2× à l'init » (init() n'appelle JAMAIS
+  aiMove — uniquement nextTurn()).
+- **v19** : image PDF par exercice (`exo-img/`, mapping `exo-img.ts`) ; ✓ Conforme ×2
+  masque ; ✍ Remarque persistée + serveur `dames-ctrl` (:8096, nginx /exo-ctrl/).
+- **v16-v18** : +18 exos 24801 (38.x piège, 39.x tactique, 40.x pratique) ; 39.5/40.7/40.8
+  écartés (pas de gain forcé). Leçon : le « x » du livre est souvent un coup CALME ;
+  rafles tronquées/coquilles → tronquer au légal ; l'analyse DOIT trier les chemins
+  comme `check` (rafle majoritaire la plus courte).
+- **v15** : fix gel exercices (jetons playGen/exoRun) · ▶ Solution auto · vitesse · 🔁.
+- **v14** : 📚 menu exercices + 💡 indice ; swipe ; `[hidden]{display:none!important}`.
+- **v7-v13** : mode exercice (24775 ch.21, C30/C31, 33.x/34.x avec dames bd/wd) ;
+  pipeline `scripts/exo-theme.ts` (render/init/show/check/merge/deploy).
+- **v1-v6** : moteur FID (majoritaire, dames volantes), minimax α-β, 2 joueurs, undo.
+- Projet GLM/Jev ANNULÉ par l'utilisateur (Maître suffit) — pas de LLM dans le moteur.
 
 ## 🌐 Service
-- **URL publique : https://dames.filtreexpert.org** (Cloudflare proxied, Flexible SSL → nginx :80)
-- VPS : `/var/www/dames/index.html` (chmod 644 obligatoire — scp copie en 600)
-- Vhost : `/etc/nginx/sites-enabled/dames-filtreexpert` (statique, port 80)
-- DNS : A record `dames` → 158.220.96.181 (proxied, zone Cloudflare 8dc1fda…, token `~/.cloudflare_token` sur le PC local)
-- Dev local : `python3 -m http.server 8095` (cwd = app/)
-- Redéploiement : `scp app/index.html vps:/var/www/dames/index.html && ssh vps chmod 644 /var/www/dames/index.html`
-
-## 🔍 Tests
-- `node --check` sur le JS extrait : OK.
-- Tests logiques headless (génération de coups) : 9 coups initiaux Noirs ✓,
-  séquences de capture majoritaire ✓, capture dame volante multi-atterrissages ✓.
-
-## 🎓 Modes exercice v3/v4 (historique)
-- v4 : PDF Doubovy « Coups basiques » (testjeudedames.free.fr, 198 p., ch.68 coup du
-  talon p.77) ; lecture pdfimages → transcription → validation moteur ; menu 📄 pdf1/pdf2 ;
-  inversion damier 🔄 (classe .flip, dataset inchangé).
-- v3 : 5 talons entraînement (ex. 25,28,30,32,40 / 8,13,15,19,23 → 30-24) ; Wikipédia →
-  rotation 180° + échange couleurs. Cases 1-50 → (r,c) : r=(n-1)/5 ; r pair c=2k+1, impair c=2k.
-
+- **Repo GitHub : andypaypow/dames-internationales** (branche `master`, commit v22 =
+  6f86ab0). Remote sans token ; push via token `/root/my/.env`. Jamais de commit sans validation.
+- **URL publique : https://dames.filtreexpert.org** (Cloudflare proxied → nginx :80)
+- VPS : `/var/www/dames/` — deploy `rsync -a dist/ vps:/var/www/dames/` + `chmod -R a+rX`
+  (scp copie en 600 → nginx 403). Vérif : `curl -s https://dames.filtreexpert.org/ | grep -o 'index-[^"]*\.js'`.
 
 ## 🐛 Erreurs & solutions
-- **Bug minimax** : `search()` utilisait `-col` sur une string ('w'/'b') → NaN → l'IA jouait quasi au hasard. Fix : `opp=col==='w'?'b':'w'`. Toujours vérifier les types avant d'utiliser un opérateur unaire `-`.
-- **Signes search** : + = bon pour les Noirs (evalBoard), +999 = Blancs bloqués. Lire les scores AVEC la convention avant de conclure.
-- scp vers VPS copie en 600 → chmod 644 après déploiement (nginx 403 sinon).
-- Validation exercices : toujours vérifier (a) case noire (r+c impair), (b) pas de chevauchement W/B, (c) clé gagnante au bon signe.
+- **Bug minimax** : `search()` utilisait `-col` sur une string → NaN → IA aléatoire.
+  Fix : `opp = col==='w' ? 'b' : 'w'`.
+- **Signes search** : + = bon pour les Noirs (evalBoard), ±999 = bloqué. Lire les
+  scores AVEC la convention.
+- Validation exercices : (a) case noire (r+c impair), (b) pas de chevauchement W/B,
+  (c) gain au bon signe ; toute solution de livre se rejoue au moteur avant merge.
+- Détection pixels diagrammes : grider sur les LIGNES sombres détectées (pas de bbox
+  estimée) ; pion empilé = dame (wd/bd) ; toujours recouper visuellement + solutions.

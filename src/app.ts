@@ -513,7 +513,7 @@ function aiNotation(m: Move): string {
 }
 
 /** Rédige la réflexion de l'IA à partir de l'analyse du moteur. */
-function aiThought(a: { score: number; move: Move; alts: { m: Move; sc: number }[]; line: Move[]; oppCaps: Move[]; pieces: [number, number] }): string {
+function aiThought(a: { score: number; move: Move; alts: { m: Move; sc: number }[]; line: Move[]; oppCaps: Move[]; pieces: [number, number]; book?: boolean }): string {
   const [nb, nw] = a.pieces;                     // nb = pions IA (Noirs), nw = joueur (Blancs)
   const L: string[] = [];
   // 1) Situation matérielle
@@ -530,7 +530,8 @@ function aiThought(a: { score: number; move: Move; alts: { m: Move; sc: number }
   else L.push('〰️ La position reste serrée.');
   // 3) Mon coup : prise ou coup calme + alternatives envisagées
   const cap = a.move.path[0].cap != null;
-  if (cap) L.push(`🎯 Je joues la prise ${aiNotation(a.move)} — elle est obligatoire.`);
+  if (a.book) L.push(`📖 Je joues ${aiNotation(a.move)} — coup de livre : je le connais grâce aux exercices validés.`);
+  else if (cap) L.push(`🎯 Je joues la prise ${aiNotation(a.move)} — elle est obligatoire.`);
   else {
     const nAlt = Math.min(3, a.alts.length);
     const alts = a.alts.slice(0, nAlt).map(x => aiNotation(x.m)).join(' ou ');
