@@ -1,5 +1,5 @@
 /* GÉNÉRÉ par scripts/exo-theme.ts — ne pas éditer à la main.
- * Sources : exos.json.valides de exercices-wip/ (thèmes : aile30, autres, damepions34, enfermes, opposition33, piege38, pratique40, tactique39) */
+ * Sources : exos.json.valides de exercices-wip/ (thèmes : aile30, damepions34, enfermes, opposition33, piege38, pratique40, tactique39) */
 import type { Exo } from './exercices';
 
 export const EXOS_THEMES: Exo[] = [
@@ -44,23 +44,12 @@ export const EXOS_THEMES: Exo[] = [
     paths: [[28, 22], [17, 28], [26, 17], [11, 22], [32, 23], [18, 29], [27, 18], [12, 23], [34, 30], [25, 34], [39, 30, 19, 28]],
     solTxt: "28-22 17x28 26x17 11x22 32x23 18x29 27x18 12x23 34-30 25x34 39x28",
     note: "PDF 24775 Cours de jeu ch.30", },
-  /* ===== autres ===== */
-  { id: "AUT.161", cat: "🔒 Autres enchaînements", goal: 'gain', trait: 'w',
-    b: [3, 5, 10, 13, 14, 15, 18, 19, 20, 22], w: [25, 29, 30, 33, 35, 38, 39, 43, 44, 48, 49],
-    paths: [[30, 24], [19, 30], [35, 24]],
-    solTxt: "30-24 19x30 35x24",
-    note: "Enchaînement des pions arrière de l'aile gauche : 24-25-29 bloquent 5,10,14,15,20 ; (3-9)? tombe sur 24-19 et 25x3.", },
-  { id: "AUT.162", cat: "🔒 Autres enchaînements", goal: 'gain', trait: 'w',
-    b: [3, 5, 13, 14, 15, 19, 20, 23, 24], w: [25, 28, 34, 35, 39, 43, 44, 48],
-    paths: [[34, 30]],
-    solTxt: "34-30",
-    note: "L'enchaînement par le trèfle : 25-30-35 immobilisent 5,14,15,19,20,24 ; (24-29)? perd deux pions par 30-24.", },
   /* ===== damepions34 ===== */
   { id: "34.1", cat: "👑 Dame contre pions", goal: 'gain', trait: 'w',
     b: [15, 19], w: [],
     paths: [[12, 7], [19, 23], [7, 29], [15, 20], [29, 15]],
     solTxt: "12-7 19-23 7x29 (prise majoritaire forcée) 15-20 29x15 +",
-    note: "La solution imprimée (« 7-1 23-28 1-29 32-38 29-42 ») est illégale au moteur (la prise par la dame est forcée après 19-23) — suite reconstruite et validée.", wd: [12] },
+    note: "Le diagramme du livre imprime le blanc en 12 SANS couronne (pion), mais la solution imprimée (12-7 19-23 7-1 23-28 1-29 32-38 29-42) joue des déplacements longue portée (1-29, 29-42) : c'est bien une DAME. Vérifié après remarque utilisateur.", wd: [12] },
   { id: "34.2", cat: "👑 Dame contre pions", goal: 'gain', trait: 'w',
     b: [4, 27], w: [14, 15],
     paths: [[14, 9], [4, 13], [15, 10], [13, 19], [10, 4], [27, 32], [4, 10]],
@@ -97,10 +86,10 @@ export const EXOS_THEMES: Exo[] = [
     solTxt: "27-22 18x27 34-30 25x34 35-30 24x44 33x24 19x30 49x7",
     note: "PDF 24775 ch.31", },
   { id: "C31.2", cat: "🔒 Autres enfermés (24775)", goal: 'gain', trait: 'w',
-    b: [3, 4, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 22, 23, 24], w: [27, 31, 33, 34, 35, 36, 38, 39, 40, 42, 43, 45, 47, 48, 50],
-    paths: [[27, 21], [16, 27], [33, 28], [22, 33, 44]],
-    solTxt: "27-21 16x27 33-28 22x44",
-    note: "PDF 24775 ch.31 (ligne tronquée à la rafle de confinement — suite du livre non reconstituable)", },
+    b: [3, 4, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 22, 23, 24], w: [27, 31, 33, 34, 35, 36, 38, 39, 40, 42, 43, 45, 47, 48, 49],
+    paths: [[27, 21], [16, 27], [33, 28], [22, 33, 44], [31, 22], [18, 27], [43, 39], [44, 33], [38, 29, 18, 7, 16]],
+    solTxt: "27-21 16x27 33-28 22x44 31x22 18x27 43-39 44x33 38x16",
+    note: "PDF 24775 ch.31 — ligne complète du livre (corrigée après remarque : case 49, pas 50)", },
   { id: "C31.4", cat: "🔒 Autres enfermés (24775)", goal: 'gain', trait: 'w',
     b: [11, 12, 13, 15, 16, 18, 21, 22, 23, 25], w: [24, 27, 31, 36, 38, 39, 42, 43, 48, 49],
     paths: [[38, 33], [21, 32], [33, 29], [23, 34], [39, 30], [25, 34], [24, 20], [15, 24], [43, 38], [32, 43], [48, 39, 30, 19, 8, 17, 6]],
@@ -111,6 +100,21 @@ export const EXOS_THEMES: Exo[] = [
     paths: [[35, 30], [24, 35], [37, 31], [26, 37], [47, 41], [37, 46], [29, 24], [46, 19, 30], [34, 25, 14, 5]],
     solTxt: "35-30 24x35 37-31 26x37 47-41 37x46 29-24 46x30 34x5",
     note: "PDF 24775 ch.31", },
+  { id: "C31.3", cat: "🔒 Autres enfermés (24775)", goal: 'gain', trait: 'w',
+    b: [2, 6, 8, 9, 10, 12, 13, 15, 16, 17, 18, 20, 22, 24], w: [26, 28, 29, 32, 33, 34, 35, 36, 38, 40, 42, 43, 44, 45],
+    paths: [[26, 21], [16, 27], [32, 21], [17, 26], [28, 17], [12, 21], [35, 30], [24, 35], [29, 24], [20, 29], [34, 23, 12, 3, 14, 5]],
+    solTxt: "26-21 16x27 32x21 17x26 28x17 12x21 35-30 24x35 29-24 20x29 34x5",
+    note: "PDF 24775 ch.31 — diagramme p.64, solution du livre", },
+  { id: "C31.7", cat: "🔒 Autres enfermés (24775)", goal: 'gain', trait: 'w',
+    b: [3, 8, 9, 10, 12, 13, 15, 16, 17, 20, 24, 26], w: [29, 32, 33, 34, 35, 36, 38, 40, 43, 47, 48, 50],
+    paths: [[36, 31], [26, 37, 28, 39, 30], [40, 34], [24, 33, 42], [34, 25, 14, 5]],
+    solTxt: "36-31 26x30 40-34 24x42 34x5",
+    note: "PDF 24775 ch.31 — diagramme p.64, solution du livre", },
+  { id: "C31.8", cat: "🔒 Autres enfermés (24775)", goal: 'gain', trait: 'w',
+    b: [3, 6, 8, 13, 14, 16, 18, 20, 22, 23], w: [25, 27, 30, 31, 36, 38, 39, 44, 45, 48],
+    paths: [[30, 24], [20, 29], [39, 34], [29, 40, 49], [31, 26], [49, 32, 21], [26, 17, 28, 19, 10]],
+    solTxt: "30-24 20x29 39-34 29x49 31-26 49x21 26x10",
+    note: "PDF 24775 ch.31 — diagramme p.64, solution du livre", },
   /* ===== opposition33 ===== */
   { id: "33.1", cat: "⚖️ L'opposition", goal: 'gain', trait: 'w',
     b: [4, 6, 18, 23, 35], w: [15, 16, 32, 42, 45, 49],

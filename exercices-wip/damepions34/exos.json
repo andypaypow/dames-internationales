@@ -14,7 +14,7 @@
   ],
   "coups": "12-7 19-23 7x29 15-20 29x15",
   "solTxt": "12-7 19-23 7x29 (prise majoritaire forcée) 15-20 29x15 +",
-  "note": "La solution imprimée (« 7-1 23-28 1-29 32-38 29-42 ») est illégale au moteur (la prise par la dame est forcée après 19-23) — suite reconstruite et validée."
+  "note": "Le diagramme du livre imprime le blanc en 12 SANS couronne (pion), mais la solution imprimée (12-7 19-23 7-1 23-28 1-29 32-38 29-42) joue des déplacements longue portée (1-29, 29-42) : c'est bien une DAME. Vérifié après remarque utilisateur."
  },
  {
   "id": "34.2",

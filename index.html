@@ -6,6 +6,7 @@
   <title>Dames Internationales — 10×10</title>
 </head>
 <body>
+<div id="exoBandeau" hidden><span id="exoBandeauTxt"></span></div>
 <div class="wrap">
   <div class="board-card">
     <h1>♛ Dames Internationales</h1>
@@ -23,7 +24,22 @@
       <option value="exo">🎓 Exercices</option>
     </select>
     <div id="exoPanel" hidden>
-      <div id="exoTitle" class="exo-title"></div>
+      <div id="exoImgBox" hidden>
+        <div class="exo-img-head">
+          <span id="exoImgTitle">🖼 Diagramme du livre</span>
+          <button id="exoImgList" title="Voir toutes les remarques (et les copier pour correction)">📋</button>
+        </div>
+        <img id="exoImg" alt="Diagramme extrait du PDF source" title="Cliquer pour agrandir">
+        <div class="exo-img-actions">
+          <button id="exoImgOk" title="L'image ET le corrigé sont conformes au livre">✓ Conforme</button>
+          <button id="exoImgKo" title="Signaler un problème sur l'image ou le corrigé">✍ Remarque</button>
+          <span id="exoImgState"></span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div id="exoTitle" class="exo-title" style="flex:1"></div>
+        <button id="exoFav" title="Ajouter aux favoris" style="font-size:1.3em;background:none;border:none;cursor:pointer;line-height:1">☆</button>
+      </div>
       <div id="exoGoal" class="exo-goal">🎯 Aux Blancs de jouer : trouvez la combinaison qui fait une <b>dame</b>.</div>
       <div class="exo-nav">
         <button id="exoPrev" title="Exercice précédent">◀</button>
@@ -49,13 +65,16 @@
       <option value="0">Facile</option>
       <option value="2" selected>Moyen</option>
       <option value="4">Difficile</option>
+      <option value="6">Expert</option>
+      <option value="9">Maître</option>
     </select>
+    <div id="aiThought" hidden></div>
     <button id="new">Nouvelle partie</button>
     <button id="undo">↩ Annuler le coup</button>
     <button id="redo">↪ Rétablir le coup</button>
     <button id="flip">🔄 Inverser le damier</button>
     <div class="rules">
-      <b>Règles :</b> les Noirs commencent. Pions : avance diagonale, capture avant <i>et</i> arrière. Dames : déplacement et capture à distance (dames volantes). La prise est obligatoire et on doit jouer la prise <b>majoritaire</b>. Promotion en dame à la dernière rangée (uniquement si le pion s'y arrête).
+      <b>Règles :</b> les Blancs commencent. Pions : avance diagonale, capture avant <i>et</i> arrière. Dames : déplacement et capture à distance (dames volantes). La prise est obligatoire et on doit jouer la prise <b>majoritaire</b>. Promotion en dame à la dernière rangée (uniquement si le pion s'y arrête).
     </div>
   </div>
 </div>
@@ -67,6 +86,18 @@
   <div id="exoFabTxt" hidden></div>
   <button id="exoHintFab" title="Indice / Solution (glissable)">💡</button>
 </div>
+<dialog id="exoRemark"><h2>✍ Remarque — <span id="exoRemarkId"></span></h2>
+  <p style="font-size:.85em">Que faut-il corriger (image, position, corrigé) ? La remarque est enregistrée et pourra être copiée pour correction.</p>
+  <textarea id="exoRemarkTxt" rows="5" style="width:100%"></textarea><br>
+  <button id="exoRemarkSave">💾 Enregistrer</button>
+  <button onclick="document.getElementById('exoRemark').close()">Annuler</button>
+</dialog>
+<dialog id="exoZoom" onclick="this.close()"><img id="exoZoomImg" alt="Diagramme agrandi" style="max-width:88vw;max-height:88vh"></dialog>
+<dialog id="exoRemarkList"><h2>📋 Remarques enregistrées</h2>
+  <div id="exoRemarkListBox" style="max-height:50vh;overflow:auto;text-align:left;font-size:.85em"></div><br>
+  <button id="exoRemarkCopy">📋 Copier tout (pour correction)</button>
+  <button onclick="document.getElementById('exoRemarkList').close()">Fermer</button>
+</dialog>
 <dialog id="end"><h2 id="endTitle"></h2><p id="endMsg"></p><br><button onclick="document.getElementById('end').close()">Fermer</button></dialog>
 
 <script type="module" src="/src/main.ts"></script>

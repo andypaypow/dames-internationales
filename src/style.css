@@ -43,6 +43,8 @@ select option,select optgroup{background:#0f172a;color:#e2e8f0}
 #exoMenu{font-size:.85rem}
 label{font-size:.8rem;opacity:.75}
 #status{text-align:center;min-height:1.2em;font-size:.85rem;color:#fbbf24}
+#aiThought{margin-top:10px;padding:10px 12px;background:#0f172a;border:1px solid #334155;border-radius:10px;font-size:.8rem;line-height:1.55;color:#94a3b8}
+#aiThought::before{content:'💭 Réflexion de l\u2019ordinateur';display:block;font-weight:600;color:#fbbf24;margin-bottom:6px;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
 .rules{font-size:.72rem;opacity:.65;line-height:1.5}
 dialog{margin:auto;background:#1e293b;color:#e2e8f0;border:1px solid #475569;border-radius:16px;padding:28px;text-align:center}
 dialog::backdrop{background:rgba(0,0,0,.6)}
@@ -91,3 +93,28 @@ dialog h2{color:#fbbf24;margin-bottom:10px}
 .sq.hint-from{box-shadow:inset 0 0 0 4px var(--sel);animation:pulseHint 1.2s ease-in-out infinite}
 .sq.hint-to{box-shadow:inset 0 0 0 3px rgba(52,211,153,.7)}
 @keyframes pulseHint{0%,100%{box-shadow:inset 0 0 0 4px var(--sel)}50%{box-shadow:inset 0 0 0 7px rgba(34,211,238,.45)}}
+
+/* ⭐ favoris dans le menu des exercices */
+.exo-star { cursor: pointer; margin-left: 6px; opacity: .45; }
+.exo-star.on { opacity: 1; }
+
+/* ---------- 🖼 comparaison avec l'image extraite du livre ---------- */
+#exoImgBox{background:rgba(0,0,0,.3);border:1px solid #475569;border-radius:12px;padding:8px;margin-bottom:10px}
+.exo-img-head{display:flex;align-items:center;justify-content:space-between;font-size:.75rem;color:#fbbf24;margin-bottom:6px}
+.exo-img-head button{padding:2px 8px;font-size:.75rem}
+#exoImg{display:block;width:100%;max-height:42vh;object-fit:contain;border-radius:8px;cursor:zoom-in;background:#fff}
+.exo-img-actions{display:flex;align-items:center;gap:6px;margin-top:6px}
+.exo-img-actions button{flex:0 0 auto;padding:5px 10px;font-size:.75rem}
+#exoImgState{font-size:.7rem;color:#a7f3d0;flex:1;text-align:right}
+#exoImgBox.flagged{border-color:#f87171}
+#exoImgBox.flagged #exoImgState{color:#fca5a5}
+#exoRemark textarea{background:#0f172a;color:#e2e8f0;border:1px solid #475569;border-radius:8px;padding:8px;margin:8px 0}
+/* ---------- bande déroulante rouge : remarques résolues ---------- */
+#exoBandeau{position:fixed;top:0;left:0;right:0;z-index:999;background:#b91c1c;color:#fff;
+  font-weight:700;font-size:.85rem;padding:6px 0;overflow:hidden;white-space:nowrap;
+  box-shadow:0 2px 8px rgba(0,0,0,.5)}
+#exoBandeau span{display:inline-block;padding-left:100vw;animation:exoDefile 18s linear infinite}
+#exoBandeau span:hover{animation-play-state:paused}
+@keyframes exoDefile{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+#exoBandeau .fermer{position:absolute;right:6px;top:50%;transform:translateY(-50%);cursor:pointer;
+  background:none;border:none;color:#fff;font-size:1rem;padding:2px 6px}

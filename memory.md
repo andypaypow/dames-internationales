@@ -17,6 +17,44 @@ Application web de jeu de dames internationales (10×10, 20 pions, règles FID).
   complet d'ajout d'exercices (render → lecture diagrammes → check → merge →
   deploy) + conventions de lecture + pièges — à utiliser pour tout ajout futur.
 
+## 📌 Prochain ajout (en attente de l'utilisateur)
+- L'utilisateur fournira LUI-MÊME les prochains exercices (ne pas extraire soi-même).
+- Absents du site : 24775 ch.21 → C21.1-C21.16 (16 exos corrigés, sol. « Solution 21 »
+  imprimées) ; enchaînements = cours, pas de série corrigée (seuls diag 139-162 sont
+  des « exercices proprement dits »). Idée UI : badge bleu « non vérifié » tant que
+  pas dit conforme (à discuter).
+
+## ✅ État (v22 — 💭 Réflexion écrite de l'IA ; projet GLM/Jev ANNULÉ)
+- **Projet GLM annulé par l'utilisateur** (niveau Auto adaptatif) : service VPS
+  `dames-ai` supprimé (systemd, /opt/dames-ai, clé), code Auto retiré. Maître suffit.
+- **v22** : panneau `#aiThought` sous le sélecteur de niveau — l'IA rédige sa
+  réflexion en français depuis `aiAnalyse()` (ia.ts) : matériel, verdict d'éval
+  (+ = Noirs), coup joué + alternatives hésitées, ligne prévue (pvLine 5 demi-coups,
+  profondeur 3), prises adverses possibles après son coup. Facile = réflexion
+  minimale. `pickAiMove` remplacé par `aiAnalyse`. 63/63 tests, bundle en ligne
+  index-yQKnRMVk.js.
+
+## ✅ État (v21 — IA renforcée : quiescence + itératif + Expert/Maître)
+- **v21** : `ia.ts` refondu — quiescence sur prises (plus d'évaluation en plein
+  échange), éval enrichie (progression², centre, dames dominantes, ratio matériel),
+  approfondissement itératif avec budget temps (0.8/2/4 s selon niveau) + tri des
+  coups par score précédent (coupures α-β). Nouveaux niveaux : Expert (prof 6,
+  2 s) et Maître (prof 9, 4 s). Facile = aléatoire (inchangé). 63/63 tests,
+  bundle en ligne index-BzmjiPYl.js.
+- **v20** : `init()` appelait `aiMove()` sans vérifier le trait → l'IA (toujours
+  Noirs, cf. `pickAiMove` sur 'b') jouait au 1er coup puis re-jouait après le
+  flip de `nextTurn()`. Fix : appel supprimé (turn='w' à l'init, l'IA ne
+  déclenche QUE via `nextTurn()`). 63/63 tests, bundle en ligne index-Bk0E6puN.js.
+- 📌 Leçon : ne jamais déclencher l'IA hors de `nextTurn()` — elle joue toujours 'b'.
+
+## ✅ État (v19 — 🖼 comparaison image du livre, handoff-exo-images.md)
+- **v19** : chaque exercice affiche la page PDF source à côté du plateau
+  (`public/exo-img/` 11 JPEG, mapping `src/exo-img.ts` 48 ids, vérifié visuellement).
+  ✓ Conforme ×2 → plus d'affichage ; ✍ Remarque → dialog persisté (localStorage
+  `dames-exo-ctrl`), liste/copie via 📋 pour corrections. En ligne bundle index-BkovGIgr.js.
+- AUT.161/162 partagent la page 100 du PDF enchaînements (161+162 sur la même page).
+
+
 ## ✅ État (v16 — 🪤 Créer un piège, 24801 ch.38)
 - **v16** : +6 exos « 🪤 Créer un piège » (24801 p.40-41, sol p.55) : 38.1, 38.3,
   38.4, 38.5, 38.7 (dame blanche 1), 38.8 (dame blanche 32). 38.6 = pas de

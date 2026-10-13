@@ -8,8 +8,9 @@
  *    joue la séquence complète (rafle entière en un clic).
  * ============================================================ */
 import { N, initBoard, clone, allMoves, playableMoves, applyMove, type Board, type Col, type Piece, type Move } from './regles';
-import { pickAiMove } from './ia';
+import { aiAnalyse } from './ia';
 import { EXOS, caseToRc, rcToCase, type Exo } from './exercices';
+import { EXO_IMG } from './exo-img';
 import './style.css';
 
 const boardEl = document.getElementById('board') as HTMLElement;
@@ -29,7 +30,9 @@ let playGen = 0;        // jeton du coup en cours d'animation : annulé par un r
 let lastMove: Move | null = null;   // dernier coup joué (surbrillance départ + arrivée)
 
 /* ---------- mode exercices (Coups de Dame) ---------- */
-let exoIndex = 0;      // exercice courant
+// Démarrage sur le PREMIER exercice disposant d'une image du livre (1ᵉʳ thème).
+const EXO0 = Math.max(0, EXOS.findIndex(e => !!EXO_IMG[e.id]));
+let exoIndex = EXO0;      // exercice courant
 let exoStep = 0;       // nombre de demi-coups de la solution déjà joués
 let exoAuto = 0;       // >0 : enchaînement automatique de la solution (replay)
 let exoLock = false;   // verrou pendant l'attente d'un coup automatique
@@ -43,6 +46,27 @@ let exoMenuMoves: Move[] = []; // coups légaux du menu
 
 const exoMode = (): boolean => $sel('mode').value === 'exo';
 const exo = (): Exo => EXOS[exoIndex];
+
+/* ---------- ⭐ favoris (persistés en localStorage) ---------- */
+const FAV_KEY = 'dames-favoris';
+let exoFavs: Set<string>;
+try { exoFavs = new Set<string>(JSON.parse(localStorage.getItem(FAV_KEY) ?? '[]')); }
+catch { exoFavs = new Set(); }
+function exoSaveFavs(): void {
+  try { localStorage.setItem(FAV_KEY, JSON.stringify([...exoFavs])); } catch { /* stockage indisponible */ }
+}
+function exoToggleFav(id: string): void {
+  if (exoFavs.has(id)) exoFavs.delete(id); else exoFavs.add(id);
+  exoSaveFavs(); exoBuildMenu(); exoUpdateFavBtn();
+}
+/** Met à jour le bouton ⭐ du panneau (exercice courant). */
+function exoUpdateFavBtn(): void {
+  const btn = $('exoFav');
+  if (!btn) return;
+  const on = exoFavs.has(exo().id);
+  btn.textContent = on ? '⭐' : '☆';
+  btn.title = on ? 'Retirer des favoris' : 'Ajouter aux favoris';
+}
 
 /** Formate un chemin de cases : 27-21 ou 33x22x13x4. */
 function fmtPath(path: number[]): string {
@@ -116,6 +140,9 @@ function exoBuildMenu(): void {
     const g = groups.find(x => x.cat === e.cat);
     if (g) g.idxs.push(i); else groups.push({ cat: e.cat, idxs: [i] });
   });
+  // ⭐ groupe Favoris en tête de menu (uniquement s'il contient des exercices)
+  const favIdxs = EXOS.map((_, i) => i).filter(i => exoFavs.has(EXOS[i].id));
+  if (favIdxs.length) groups.unshift({ cat: '⭐ Favoris', idxs: favIdxs });
   if (!exoOpenCats.size && groups.length) exoOpenCats.add(EXOS[exoIndex].cat);
   for (const g of groups) {
     const open = exoOpenCats.has(g.cat);
@@ -143,6 +170,14 @@ function exoBuildMenu(): void {
         b.className = 'exo-item' + (i === exoIndex ? ' current' : '');
         b.textContent = `${e.goal === 'mat' ? 'M' : e.goal === 'gain' ? 'G' : 'C'} ${e.id}`;
         b.title = 'Charger cet exercice';
+        // ⭐ étoile favori : clic sur l'étoile = bascule (sans charger l'exercice)
+        const fav = exoFavs.has(e.id);
+        const star = document.createElement('span');
+        star.className = 'exo-star' + (fav ? ' on' : '');
+        star.textContent = fav ? '⭐' : '☆';
+        star.title = fav ? 'Retirer des favoris' : 'Ajouter aux favoris';
+        star.onclick = (ev) => { ev.stopPropagation(); exoToggleFav(e.id); };
+        b.append(' ', star);
         b.onclick = () => {
           $('exoMenuDrop').hidden = true;
           if (exoMode()) { if (!exoLock && !animating) exoLoad(i); return; }
@@ -178,15 +213,22 @@ function exoReset(): void {
   $('exoSol').hidden = true; $('exoSol').textContent = '';
   $('exoFabTxt').hidden = true;
   exoAutoUI();
-  turn = e.trait ?? 'w';
+  // ⚪ Règle FID : ce sont toujours les Blancs qui commencent (tous les exercices).
+  turn = 'w';
   sequences = playableMoves(board, turn);   // jeu libre : tout le damier est jouable
   render(); updateUI();
   exoRenderMenu();
-  const qui = turn === 'w' ? 'Blancs' : 'Noirs';
-  status(exo().goal === 'mat'
+  exoUpdateFavBtn();
+  exoUpdateImg();
+  // Exercices du livre où la solution commence par un coup Noir (A.98, A.100) :
+  // les Blancs ouvrent par un coup libre, puis la solution noire est jouable.
+  const libre = exo().trait === 'b';
+  status(libre
+    ? '⚪ Aux Blancs de jouer (coup libre) — puis faites jouer la solution aux Noirs !'
+    : exo().goal === 'mat'
     ? '⚪ Aux Blancs de jouer — bloque les Noirs jusqu’au mat !'
     : exo().goal === 'gain'
-    ? `⚪ Aux ${qui} de jouer — trouvez la combinaison gagnante !`
+    ? '⚪ Aux Blancs de jouer — trouvez la combinaison gagnante !'
     : '⚪ Aux Blancs de jouer — trouvez la combinaison qui fait une dame !');
 }
 
@@ -220,10 +262,16 @@ function exoSchedule(): void {
 function exoSuccess(): void {
   exoAuto = 0; exoLock = false;
   exoAutoUI();
-  sequences = []; exoRenderMenu();
+  // ✅ PAS de blocage après la réussite : le damier reste jouable en jeu libre
+  // (⏮ Départ pour rejouer le diagramme, 📚 pour choisir un autre exercice).
+  sequences = playableMoves(board, turn);
+  exoRenderMenu();
   updateUI();
   const ok = exo().goal === 'mat' ? 'Adversaire bloqué — mat' : exo().goal === 'gain' ? 'Combinaison réalisée' : 'Dame réalisée';
-  status(`🎉 Bravo ! ${ok} — exercice ${exo().goal === 'mat' ? 'M' : exo().goal === 'gain' ? 'G' : 'C'} ${exo().id} réussi.`);
+  const suite = sequences.length
+    ? ' — jeu libre possible (⏮ Départ pour rejouer, 📚 pour un autre exercice)'
+    : '';
+  status(`🎉 Bravo ! ${ok} — exercice ${exo().goal === 'mat' ? 'M' : exo().goal === 'gain' ? 'G' : 'C'} ${exo().id} réussi${suite}.`);
   // 🔁 Repeat : repart automatiquement du diagramme et rejoue la solution
   if (exoRepeat) {
     const gen = exoGen, run = exoRun;
@@ -337,6 +385,9 @@ function exoJudge(m: Move): void {
     const nxt = exo().paths[exoStep];
     if (nxt && exoFindMove(nxt)) { exoSchedule(); return; }
     status(`✅ C'est ça ! (${fmtPath(expected)}) — à vous de répondre`);
+  } else if (exo().trait === 'b' && exoStep === 0) {
+    // Exercice à trait Noir : le coup blanc d'ouverture est libre, pas une faute.
+    status('⚪ Coup blanc libre — la solution commence au coup des Noirs (💡 pour la voir)');
   } else {
     status(`⚠️ ${fmtPath([from, to])} s'écarte de la solution — jeu libre, ↩ pour revenir`);
   }
@@ -453,14 +504,68 @@ function nextTurn(): void {
   }
 }
 
+/* ---------- 💭 Réflexion écrite de l'ordinateur ---------- */
+/** Convertit un coup en notation cases 1-50 (ex. « 33x24 » ou « 25-20 »). */
+function aiNotation(m: Move): string {
+  const path = m.path.map(s => rcToCase(s.r, s.c));
+  const cap = m.path[0].cap != null;
+  return path.map((n, i) => (i ? (cap ? 'x' : '-') : '') + n).join('');
+}
+
+/** Rédige la réflexion de l'IA à partir de l'analyse du moteur. */
+function aiThought(a: { score: number; move: Move; alts: { m: Move; sc: number }[]; line: Move[]; oppCaps: Move[]; pieces: [number, number] }): string {
+  const [nb, nw] = a.pieces;                     // nb = pions IA (Noirs), nw = joueur (Blancs)
+  const L: string[] = [];
+  // 1) Situation matérielle
+  const mat = nb - nw;
+  L.push(mat > 1 ? `⚖️ Je mène au matériel (${nb} contre ${nw}).`
+       : mat < -1 ? `⚖️ Je suis en infériorité (${nb} contre ${nw}).`
+       : `⚖️ Matériel équilibré (${nb} contre ${nw}).`);
+  // 2) Verdict de l'évaluation (+ = bon pour les Noirs = moi)
+  const s = Math.round(a.score);
+  if (s >= 999) L.push('🔥 J\u2019ai trouvé une combinaison gagnante !');
+  else if (s <= -999) L.push('😬 La position est perdue, je résiste du mieux que je peux.');
+  else if (s > 5) L.push(`📈 Mon analyse me favorise légèrement (+${s}).`);
+  else if (s < -5) L.push(`📉 Ton positionnement est un peu meilleur (${s}).`);
+  else L.push('〰️ La position reste serrée.');
+  // 3) Mon coup : prise ou coup calme + alternatives envisagées
+  const cap = a.move.path[0].cap != null;
+  if (cap) L.push(`🎯 Je joues la prise ${aiNotation(a.move)} — elle est obligatoire.`);
+  else {
+    const nAlt = Math.min(3, a.alts.length);
+    const alts = a.alts.slice(0, nAlt).map(x => aiNotation(x.m)).join(' ou ');
+    L.push(`🤔 Je joues ${aiNotation(a.move)} — j\u2019hésitais entre ${alts}.`);
+  }
+  // 4) Ligne prévue (mon coup + réponses attendues)
+  if (a.line.length > 1) {
+    L.push('🗂️ Si tu réponds ' + a.line.slice(1, 4).map(aiNotation).join(', puis ')
+      + ' — voilà comment je vois la suite.');
+  }
+  // 5) Menaces détectées sur mes pièces après mon coup
+  if (a.oppCaps.length) {
+    const menaces = [...new Set(a.oppCaps.map(m => aiNotation(m)))].slice(0, 3).join(' ou ');
+    L.push(`⚠️ Attention : après mon coup, tu pourras prendre avec ${menaces}.`);
+  } else if (!cap) {
+    L.push('✅ Je ne te laisse aucune prise immédiate.');
+  }
+  return L.join(' ');
+}
+
 function aiMove(): void {
   if (gameOver) return;
   aiThinking = true; status("🤖 L'ordinateur réfléchit…");
+  $('aiThought').hidden = true;
   setTimeout(() => {
-    const depth = +$sel('level').value;
-    const m = pickAiMove(board, depth);
-    if (!m) { aiThinking = false; checkEnd(); return; }
-    void playMove(m);   // rafle animée pion après pion
+    const lv = $sel('level').value;
+    const depth = +lv;
+    // Budget temps : les gros niveaux cherchent plus profond sans geler l'UI
+    const budget = depth >= 9 ? 4000 : depth >= 6 ? 2000 : 800;
+    const a = aiAnalyse(board, depth, budget);
+    if (!a) { aiThinking = false; checkEnd(); return; }
+    // 💭 Écrire la réflexion (même analyse que le coup joué)
+    $('aiThought').textContent = aiThought(a);
+    $('aiThought').hidden = false;
+    void playMove(a.move);   // rafle animée pion après pion
   }, 250);
 }
 
@@ -520,10 +625,10 @@ function init(): void {
   playGen++;   // annule toute animation en vol d'un coup précédent
   if (exoMode()) { exoLoad(exoIndex); return; }
   board = initBoard();
-  turn = 'b'; selected = null; history = []; redoStack = []; gameOver = false; aiThinking = false; animating = false; lastMove = null;
+  turn = 'w'; selected = null; history = []; redoStack = []; gameOver = false; aiThinking = false; animating = false; lastMove = null;
   sequences = playableMoves(board, turn);
-  render(); status('⚫ Les Noirs commencent — à vous de jouer');
-  if ($sel('mode').value === 'ai') aiMove();
+  render(); status('⚪ Les Blancs commencent — à vous de jouer');
+  // ⚪ Règle FID : les Blancs commencent — l'IA (Noirs) ne doit PAS jouer ici.
 }
 
 $('new').onclick = init;
@@ -548,8 +653,8 @@ $('undo').onclick = () => {
   pop();
   if (isAi && turn === 'b') {
     if (history.length) pop();
-    else { // début de partie : les Noirs (IA) recommencent, rien à rétablir
-      redoStack = []; status('⚫ Les Noirs commencent — à vous de jouer');
+    else { // début de partie : les Blancs (joueur) recommencent, rien à rétablir
+      redoStack = []; status('⚪ Les Blancs commencent — à vous de jouer');
       aiMove(); return;
     }
   }
@@ -646,6 +751,129 @@ fab.addEventListener('pointerup', (ev) => {
   exoRenderMenu();
   status(`💡 Coup n°${exoStep + 1} révélé — jouez-le (surligné dans le menu)`);
 });
+
+/* ---------- ⭐ favori : bouton du panneau exercice ---------- */
+$('exoFav').onclick = () => exoToggleFav(exo().id);
+
+/* ---------- 🖼 comparaison avec l'image extraite du livre ----------
+ * Chaque exercice issu d'un PDF affiche la page scannée à côté du plateau.
+ * ✓ Conforme ×2 (image ET corrigé) → l'image ne s'affiche plus.
+ * ✍ Remarque → boîte de dialogue, stockée en localStorage, visible via 📋
+ *   (copiable pour apporter les corrections ensuite). */
+const CTRL_KEY = 'dames-exo-ctrl';
+interface ExoCtrl { ok?: number; remarks?: string[] }
+let exoCtrl: Record<string, ExoCtrl> = {};
+try { exoCtrl = JSON.parse(localStorage.getItem(CTRL_KEY) ?? '{}'); } catch { exoCtrl = {}; }
+function ctrlSave(): void { try { localStorage.setItem(CTRL_KEY, JSON.stringify(exoCtrl)); } catch { /* stockage indisponible */ } }
+function ctrlOf(id: string): ExoCtrl { return exoCtrl[id] ?? (exoCtrl[id] = {}); }
+/** Envoie la validation/remarque au service dames-ctrl (VPS) — suivi côté Correcteur. */
+function ctrlSync(id: string): void {
+  const c = exoCtrl[id];
+  if (!c) return;
+  try {
+    void fetch('/exo-ctrl/', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id, ok: c.ok ?? 0, remarks: c.remarks ?? [] }) });
+  } catch { /* hors ligne : la copie locale reste fiable */ }
+}
+// Au chargement : récupère les validations/remarques déjà envoyées (autre appareil/cache vidé)
+// + les RÉSOLUTIONS annoncées par le Correcteur → bande déroulante rouge.
+const RESLU_KEY = 'dames-resolus-vus';
+let resolusVus: string[] = [];
+try { resolusVus = JSON.parse(localStorage.getItem(RESLU_KEY) ?? '[]'); } catch { /* ignore */ }
+try {
+  void fetch('/exo-ctrl/').then(r => r.json()).then((srv: Record<string, ExoCtrl & { fix?: string }>) => {
+    let maj = false;
+    for (const [id, c] of Object.entries(srv)) {
+      if (id.startsWith('_')) continue;
+      const loc = ctrlOf(id);
+      if ((c.ok ?? 0) > (loc.ok ?? 0)) { loc.ok = c.ok; maj = true; }
+      if (c.remarks?.length && !loc.remarks?.length) { loc.remarks = c.remarks; maj = true; }
+    }
+    ctrlSave();
+    // Bande déroulante rouge : « ✅ Remarque résolue … »
+    const resolus = srv._resolus as { key: string; id: string; fix: string }[] | undefined;
+    if (Array.isArray(resolus)) {
+      const news = resolus.filter(r => !resolusVus.includes(r.key));
+      if (news.length) exoShowBandeau(news);
+    }
+    if (maj && exoMode()) exoUpdateImg();
+  }).catch(() => { /* service indisponible */ });
+} catch { /* ignore */ }
+
+/** Bande déroulante rouge en haut de l'écran : signale les remarques résolues. */
+function exoShowBandeau(news: { key: string; id: string; fix: string }[]): void {
+  const b = $('exoBandeau'), t = $('exoBandeauTxt');
+  t.textContent = ' ✅ ' + news.map(r => `Remarque résolue — ${r.id} : ${r.fix}`).join('  ··  ') + ' ';
+  b.hidden = false;
+  resolusVus = [...resolusVus, ...news.map(r => r.key)];
+  try { localStorage.setItem(RESLU_KEY, JSON.stringify(resolusVus)); } catch { /* ignore */ }
+  const x = document.createElement('button');
+  x.className = 'fermer'; x.textContent = '✕'; x.title = 'Masquer';
+  x.onclick = () => { b.hidden = true; };
+  b.appendChild(x);
+}
+
+function exoUpdateImg(): void {
+  const box = $('exoImgBox');
+  const url = EXO_IMG[exo().id];
+  const show = exoMode() && !!url && (ctrlOf(exo().id).ok ?? 0) < 1;
+  box.hidden = !show;
+  if (!show) return;
+  ($('exoImg') as HTMLImageElement).src = url;
+  $('exoImgTitle').textContent = `🖼 Diagramme du livre — ${exo().id}`;
+  const c = ctrlOf(exo().id);
+  const flagged = !!c.remarks?.length;
+  box.classList.toggle('flagged', flagged);
+  $('exoImgState').textContent = flagged
+    ? `🚩 ${c.remarks!.length} remarque(s)`
+    : c.ok ? `✓ validé ${c.ok}/2` : '';
+}
+
+$('exoImgOk').onclick = () => {
+  const id = exo().id;
+  const c = ctrlOf(id);
+  c.ok = (c.ok ?? 0) + 1; ctrlSave(); ctrlSync(id);
+  if (c.ok >= 1) {
+    $('exoImgBox').hidden = true;
+    status('🖼✅ Conformité validée — la comparaison ne s\'affichera plus pour cet exercice (📚 pour en choisir un autre).');
+  } else exoUpdateImg();
+};
+$('exoImgKo').onclick = () => {
+  $('exoRemarkId').textContent = `exercice ${exo().id}`;
+  ($('exoRemarkTxt') as HTMLTextAreaElement).value = ctrlOf(exo().id).remarks?.join('\n———\n') ?? '';
+  ($('exoRemark') as HTMLDialogElement).showModal();
+};
+$('exoRemarkSave').onclick = () => {
+  const txt = ($('exoRemarkTxt') as HTMLTextAreaElement).value.trim();
+  ($('exoRemark') as HTMLDialogElement).close();
+  if (txt) {
+    ctrlOf(exo().id).remarks = [txt]; ctrlSave(); ctrlSync(exo().id);
+    exoUpdateImg();
+    status('🚩 Remarque enregistrée et envoyée pour correction (📋 pour la relire).');
+  }
+};
+$('exoImg').onclick = () => {
+  ($('exoZoomImg') as HTMLImageElement).src = ($('exoImg') as HTMLImageElement).src;
+  ($('exoZoom') as HTMLDialogElement).showModal();
+};
+const remarkIds = (): string[] => Object.keys(exoCtrl).filter(id => exoCtrl[id].remarks?.length);
+$('exoImgList').onclick = () => {
+  const box = $('exoRemarkListBox'); box.innerHTML = '';
+  const ids = remarkIds();
+  if (!ids.length) box.textContent = 'Aucune remarque enregistrée.';
+  for (const id of ids) for (const r of exoCtrl[id].remarks!) {
+    const p = document.createElement('p');
+    p.textContent = `• ${id} : ${r}`;
+    box.appendChild(p);
+  }
+  ($('exoRemarkList') as HTMLDialogElement).showModal();
+};
+$('exoRemarkCopy').onclick = () => {
+  const payload = JSON.stringify(Object.fromEntries(remarkIds().map(id => [id, exoCtrl[id].remarks])), null, 1);
+  navigator.clipboard.writeText(payload).then(
+    () => status('📋 Remarques copiées — collez-les dans la conversation pour correction.'),
+    () => status('⚠️ Copie impossible — relevez les remarques affichées dans la boîte.'));
+};
 
 /* ---------- 🔁 Repeat : la solution se rejoue en boucle après chaque réussite ---------- */
 $('exoRepeat').onclick = () => {

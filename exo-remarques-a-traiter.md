@@ -1,0 +1,27 @@
+# 🔧 Remarques/validations exercices dames — à traiter
+
+- 🚩 **C30.1** (13/09 12:00) : conforme. inutile d'afficher encore l'image
+- ✅ **C30.1** validé conforme ×2 (13/09 12:00) — image masquée
+- ✅ **C30.2** validé conforme ×2 (13/09 12:00) — image masquée
+- ✅ **C30.3** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **C30.4** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **C30.5** validé conforme ×2 (13/09 12:00) — image masquée
+- ✅ **C30.6** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **C30.7** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **C30.8** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **34.2** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **34.3** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **34.4** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **34.5** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **34.6** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **34.7** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **34.8** validé conforme ×1 (13/09 12:00) — image masquée
+- ✅ **C31.1** validé conforme ×1 (13/09 12:00) — image masquée
+- 🚩 **34.1** (13/09 15:40) : Supprime cet exercice
+- ✅ **C31.2** validé conforme ×1 (13/09 19:50) — image masquée
+- ✅ **C31.4** validé conforme ×1 (13/09 19:50) — image masquée
+- 🚩 **C31.5** (13/09 19:50) : Ce n'est pas un bon Coup car après la dame est tué et les Blanc perdent un pion. Supprime cet exercice stp
+- ✅ **C31.3** validé conforme ×1 (13/09 20:00) — image masquée
+- ✅ **C31.7** validé conforme ×1 (13/09 20:00) — image masquée
+- ✅ **C31.8** validé conforme ×1 (13/09 20:00) — image masquée
+- ✅ **38.1** validé conforme ×1 (16/09 19:10) — image masquée
