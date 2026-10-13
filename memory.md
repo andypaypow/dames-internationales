@@ -5,13 +5,12 @@ Application web de dames internationales (10×10, 20 pions, règles FID).
 Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run dev/test/deploy`.
 
 ## 📚 Sources PDF archivées (docs/)
-- `docs/24775-cours-de-jeu.pdf` — Cours de jeu (Toulouse) : C21.x, C30.x, C31.x.
-- `docs/24801.pdf` — Fins de parties : 33.x, 34.x, 38.x, 39.x, 40.x.
-- `docs/enchainements-gregoire-pesente-ffjd.pdf` — enchaînements, diag 161-162.
-- `docs/fmjd-cours1-fr.pdf` — **FMJD Cours 1 (fr)** : Leçons 1-11 (ricochet p.23-25,
-  solutions p.36-37). ⚠️ /tmp volatile : repartir de ces copies (pipeline : render <pdf>).
-- 🧰 **Skill `/exercices-dames`** : pipeline complet d'ajout d'exercices
-  (render → lecture diagrammes → check → merge → deploy) — à utiliser pour tout ajout.
+- `docs/24775-cours-de-jeu.pdf` (Toulouse) : C21.x, C30.x, C31.x · `docs/24801.pdf`
+  (fins de parties) : 33.x, 34.x, 38.x, 39.x, 40.x · `docs/enchainements-gregoire-pesente-ffjd.pdf`.
+- `docs/fmjd-cours1-fr.pdf` — **FMJD Cours 1 (fr)**, 168 p. : Leçons 1-30+. Solutions :
+  L1-10 p.36-38, L11-20 p.80-82, L21-30 p.123+. Diagrammes dans les leçons.
+  ⚠️ /tmp volatile : repartir de ces copies (pipeline : render <pdf>).
+- 🧰 **Skill `/exercices-dames`** : pipeline complet d'ajout d'exercices — à utiliser.
 
 ## ✅ État (v24 — Leçons 8-17 FMJD : 82 nouveaux exercices)
 - **v24** : leçons 8 (bombe), 9 (arche), 10 (Napoléon), 11 (autres coups), 12 (forcing),
