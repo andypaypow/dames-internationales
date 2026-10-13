@@ -81,9 +81,8 @@ Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run d
   rafles tronquées/coquilles → tronquer au légal ; l'analyse DOIT trier les chemins
   comme `check` (rafle majoritaire la plus courte).
 - **v15** : fix gel exercices (jetons playGen/exoRun) · ▶ Solution auto · vitesse · 🔁.
-- **v14** : 📚 menu exercices + 💡 indice ; swipe ; `[hidden]{display:none!important}`.
-- **v7-v13** : mode exercice (24775 ch.21, C30/C31, 33.x/34.x avec dames bd/wd) ;
-  pipeline `scripts/exo-theme.ts` (render/init/show/check/merge/deploy).
+- **v7-v14** : mode exercice (ch.21, C30/C31, 33.x/34.x dames bd/wd), pipeline
+  `scripts/exo-theme.ts`, 📚 menu + 💡 indice, swipe, exoSchedule. Détails → git log.
 - **v1-v6** : moteur FID (majoritaire, dames volantes), minimax α-β, 2 joueurs, undo.
 - Projet GLM/Jev ANNULÉ par l'utilisateur (Maître suffit) — pas de LLM dans le moteur.
 
