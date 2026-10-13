@@ -1,0 +1,502 @@
+[
+ {
+  "id": "18.1",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   13,
+   16,
+   18,
+   19,
+   20,
+   23,
+   24
+  ],
+  "w": [
+   30,
+   32,
+   33,
+   34,
+   35,
+   38,
+   42,
+   48
+  ],
+  "coups": "32-27",
+  "solTxt": "32-27 (menace 27-22) ; exercice « menace » : le livre donne le coup clé, pas de ligne forcée complète",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.2",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   13,
+   14,
+   16,
+   18,
+   19,
+   22,
+   23
+  ],
+  "w": [
+   29,
+   32,
+   33,
+   34,
+   36,
+   47,
+   49
+  ],
+  "coups": "32-27 22x31 36x27",
+  "solTxt": "32-27 22x31 36x27",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.3",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   3,
+   6,
+   7,
+   8,
+   9,
+   10,
+   12,
+   13,
+   16,
+   17,
+   18,
+   22,
+   30
+  ],
+  "w": [
+   26,
+   27,
+   29,
+   31,
+   36,
+   38,
+   39,
+   41,
+   42,
+   43,
+   44,
+   45,
+   48
+  ],
+  "coups": "39-33",
+  "solTxt": "39-33 (double menace 29-23 18x29 33x35 et 27-21 16x27 33-28 22x24 31x2) ; exercice « menace » : le livre donne le coup clé, pas de ligne forcée complète",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.4",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   10,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   22,
+   23,
+   25
+  ],
+  "w": [
+   27,
+   31,
+   33,
+   34,
+   36,
+   39,
+   40,
+   43,
+   45,
+   48,
+   49
+  ],
+  "coups": "34-29 23x34 40x29",
+  "solTxt": "34-29 23x34 40x29 (menace 29-23)",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.5",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   3,
+   12,
+   13,
+   16,
+   18,
+   19,
+   20,
+   21,
+   23,
+   24,
+   26
+  ],
+  "w": [
+   27,
+   28,
+   32,
+   33,
+   34,
+   35,
+   37,
+   38,
+   39,
+   43,
+   48
+  ],
+  "coups": "34-29 23x34 39x30 20-25 28-23 19x39 30x17 21x12 43x34",
+  "solTxt": "34-29 23x34 39x30 20-25 28-23 19x39 30x17 21x12 43x34",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.6",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   3,
+   6,
+   10,
+   11,
+   12,
+   13,
+   15,
+   16,
+   18,
+   19,
+   23,
+   24
+  ],
+  "w": [
+   27,
+   28,
+   31,
+   32,
+   34,
+   36,
+   38,
+   40,
+   43,
+   45,
+   48,
+   49
+  ],
+  "coups": "38-33",
+  "solTxt": "38-33 (menace 27-21 etc. ; 10-14 perd un pion) ; exercice « menace » : le livre donne le coup clé, pas de ligne forcée complète",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.7",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   3,
+   5,
+   6,
+   8,
+   9,
+   10,
+   11,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   23
+  ],
+  "w": [
+   26,
+   30,
+   32,
+   33,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   45,
+   47,
+   48,
+   49
+  ],
+  "coups": "30-24 20x29 33x24 19x30 35x24 14-20 39-34 20x29 32-27 21x32 37x19 13x24 34x21",
+  "solTxt": "30-24 20x29 33x24 19x30 35x24 14-20 39-34 20x29 32-27 21x32 37x19 13x24 34x21",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.8",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   3,
+   13,
+   19,
+   20,
+   24,
+   36
+  ],
+  "w": [
+   28,
+   34,
+   40,
+   44,
+   47,
+   48
+  ],
+  "coups": "44-39",
+  "solTxt": "44-39 (menace 47-41 36x47 39-33) ; exercice « menace » : le livre donne le coup clé, pas de ligne forcée complète",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.9",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   18,
+   19,
+   20,
+   23,
+   24,
+   25
+  ],
+  "w": [
+   30,
+   32,
+   33,
+   34,
+   35,
+   38,
+   42
+  ],
+  "coups": "32-27 8-13 27-22 18x27 33-29",
+  "solTxt": "32-27 9-13/14 27-22 18x27 33-29 + (diagramme : 8-13/8-12 — variante 8-13 retenue)",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits ; livre « 9-13/14 », diagramme : 8-13/8-12"
+ },
+ {
+  "id": "18.10",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   18,
+   22,
+   28
+  ],
+  "w": [
+   27,
+   31,
+   48
+  ],
+  "coups": "48-43 28-33 43x38 33x42 31-26 22x31 26x48",
+  "solTxt": "48-43! (48-42? 28-32 27x38 22-28 =) 28-33 … (notation livre « 43-38 33x42 »)",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.11",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   12,
+   13,
+   14,
+   18,
+   25
+  ],
+  "w": [
+   23,
+   28,
+   29,
+   33,
+   38,
+   39
+  ],
+  "coups": "39-34 18-22 28x17 12x21 23-19",
+  "solTxt": "39-34 18-22 (14-20 ou 13-19 39-34 +) 28x17 12x21 23-19 +",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.12",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   16,
+   18,
+   23,
+   25,
+   26,
+   35
+  ],
+  "w": [
+   32,
+   38,
+   39,
+   42,
+   43,
+   44
+  ],
+  "coups": "39-34",
+  "solTxt": "39-34 ; exercice « menace » : le livre donne le coup clé, pas de ligne forcée complète",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.13",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   20,
+   21,
+   25,
+   26
+  ],
+  "w": [
+   24,
+   28,
+   29,
+   33,
+   34,
+   36,
+   37,
+   39,
+   40,
+   42,
+   48
+  ],
+  "coups": "37-32 14-19 40-35 19x30 35x24 18-22 24-19 13x24 32-27 21x23 29x7",
+  "solTxt": "37-32 14-19 (18-22 24-19 13x24 32-27 21x23 29x7 +) 40-35 …",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.14",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   6,
+   7,
+   13,
+   16,
+   19,
+   20,
+   23,
+   25
+  ],
+  "w": [
+   27,
+   28,
+   31,
+   32,
+   34,
+   37,
+   43,
+   44
+  ],
+  "coups": "28-22 20-24 22-18 23x12 34-29 24x33 32-28 33x22 27x9",
+  "solTxt": "28-22 20-24 22-18 23x12 34-29 24x33 32-28 33x22 27x9",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.15",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   12,
+   13,
+   15,
+   16,
+   17,
+   18,
+   19,
+   22,
+   23,
+   25
+  ],
+  "w": [
+   24,
+   27,
+   29,
+   30,
+   31,
+   34,
+   35,
+   37,
+   43,
+   47
+  ],
+  "coups": "43-38 17-21 31-26 22x33 26x8 13x2 24x22 33x24 30x28",
+  "solTxt": "43-38 17-21 (23-28 29-23 +) 31-26 22x33 … (notation « 26x8 » du livre)",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ },
+ {
+  "id": "18.16",
+  "cat": "🎯 Une forte menace",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   9,
+   12,
+   13,
+   15,
+   16,
+   18,
+   22,
+   25,
+   26
+  ],
+  "w": [
+   24,
+   29,
+   32,
+   33,
+   34,
+   36,
+   37,
+   38,
+   40,
+   42
+  ],
+  "coups": "32-27 22x31 36x27 12-17 37-31 26x48 27-21 48x19 21x12",
+  "solTxt": "32-27 22x31 36x27 12-17 (9-14 27-22 18x27 24-20 15x24 29x7) 37-31 …",
+  "note": "FMJD Cours 1 (fr), Leçon 18, diagrammes p.70-71, solutions p.82 ; auto-extraits"
+ }
+]

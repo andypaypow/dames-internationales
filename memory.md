@@ -35,6 +35,21 @@ Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run d
   25 blocage, 26+ ; C28.x marchand de bois…). Solutions disséminées p.36-38, 80-86,
   123+ ; diagrammes dans les leçons.
 
+## ✅ État (v25 — Leçons 2-6, 18-20 FMJD : +47 exercices)
+- **v25a** : leçons 2 (combinaisons), 3 (Philippe), 4 (mazette), 5 (Royal), 6 (talon)
+  → thèmes combi02/philippe03/mazette04/royal05/talon06 (39 exos, p.10-22, sol p.36-37).
+  ⚠️ pages 13/19 « hachurées » : crops manuels + **appariement solution↔diagramme
+  automatique** (scripts/_match.ts : tester chaque solution sur chaque position) —
+  le layout colonne est confirmé mais l'indexation directe crop#n était le bug.
+  C5.7 écarté, C3.3 tronqué.
+- **v25b** : 18 (forte menace, 16 exos p.70-71), 19 (pions de base, 8 exos p.75 —
+  les candidats sont imprimés SOUS les diagrammes), 20 (piéger, 8 exos p.79, sol p.82).
+  Menaces (18.1/3/6/8/12, 19.x) : path = coup clé seul. 18.9 (livre 9-13/14 →
+  diagramme 8-13), 20.6 tronqué. 231/231 tests.
+- **Reste** : Leçon 21 (C21.1-21.16, diag p.85-86), 22 (la dame est prise),
+  23 (C23.1-23.8 diag p.94 + Exercices 23.x, sol p.123+), 25-30 (25.x sol p.124,
+  26.x, 28.x marchand de bois C28.1+…). Leçon 1 = notation (rien à implémenter).
+
 ## ✅ État (v23 — ↔️ Coup du ricochet FMJD + 📖 livre d'exercices)
 - **v23a exercices** : +8 exos « ↔️ Coup du ricochet » (FMJD Cours 1, Leçon 7,
   diagrammes p.25, solutions p.36-37) → thème `exercices-wip/ricochet07/`.
