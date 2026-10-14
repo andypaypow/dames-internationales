@@ -1,0 +1,248 @@
+[
+ {
+  "id": "25.1",
+  "cat": "🔒 Tactique de blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   16,
+   17,
+   21,
+   23,
+   24,
+   25
+  ],
+  "w": [
+   26,
+   27,
+   32,
+   33,
+   34,
+   48,
+   49
+  ],
+  "coups": "48-43 24-30 43-39 30-35 49-44 8-13 44-40 35x44 39x50 13-19 33-28",
+  "solTxt": "48-43 24-30 43-39 30-35 49-44 8-13 44-40 35x44 39x50 13-19 33-28",
+  "note": "FMJD Cours 1 (fr), Leçon 25, diagrammes p.102, solutions p.124 ; auto-extrait (appariement moteur) ; parenthèses du livre non rejouées"
+ },
+ {
+  "id": "25.2",
+  "cat": "🔒 Tactique de blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   3,
+   8,
+   9,
+   12,
+   13,
+   16,
+   18,
+   19,
+   23,
+   24
+  ],
+  "w": [
+   25,
+   26,
+   27,
+   32,
+   33,
+   35,
+   38,
+   39,
+   42,
+   48
+  ],
+  "coups": "48-43 23-29 27-21 16x27 32x21 9-14 33-28 3-9 21-16 12-17 28-23 19x28 38-32 28x48 39-34 48x30 25x3",
+  "solTxt": "48-43 23-29 27-21 16x27 32x21 9-14 33-28 3-9 21-16 12-17 28-23 19x28 38-32 28x48 39-34 48x30 25x3",
+  "note": "FMJD Cours 1 (fr), Leçon 25, diagrammes p.102, solutions p.124 ; auto-extrait (appariement moteur) ; parenthèses non rejouées"
+ },
+ {
+  "id": "25.3",
+  "cat": "🔒 Tactique de blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   7,
+   13,
+   14,
+   17,
+   18,
+   19,
+   23,
+   29
+  ],
+  "w": [
+   26,
+   27,
+   28,
+   30,
+   32,
+   35,
+   42,
+   43
+  ],
+  "coups": "27-21 7-12 21-16 18-22 43-38 22x33 30-24 19x30 35x24 29x20 38x7",
+  "solTxt": "27-21 7-12 21-16 18-22 43-38 22x33 30-24 19x30 35x24 29x20 38x7",
+  "note": "FMJD Cours 1 (fr), Leçon 25, diagrammes p.102, solutions p.124 ; auto-extrait (appariement moteur)"
+ },
+ {
+  "id": "25.4",
+  "cat": "🔒 Tactique de blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   6,
+   8,
+   9,
+   13,
+   15,
+   18,
+   22,
+   23,
+   25,
+   35
+  ],
+  "w": [
+   27,
+   29,
+   31,
+   33,
+   34,
+   36,
+   39,
+   43,
+   44,
+   49
+  ],
+  "coups": "29-24 8-12 24-20 25x14 34-30 35x24 33-29 23x34 39x28",
+  "solTxt": "29-24 8-12 24-20 25x14 34-30 35x24 33-29 23x34 39x28",
+  "note": "FMJD Cours 1 (fr), Leçon 25, diagrammes p.102, solutions p.124 ; auto-extrait (appariement moteur)"
+ },
+ {
+  "id": "25.5",
+  "cat": "🔒 Tactique de blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   6,
+   8,
+   13,
+   16,
+   20,
+   23,
+   25
+  ],
+  "w": [
+   26,
+   27,
+   32,
+   34,
+   39,
+   42,
+   49
+  ],
+  "coups": "42-38 20-24 38-33 13-19 49-44 8-13 44-40 24-30 40-35 19-24 33-28 13-19 28-22",
+  "solTxt": "42-38 20-24 38-33 13-19 49-44 8-13 44-40 24-30 40-35 19-24 33-28 13-19 28-22",
+  "note": "FMJD Cours 1 (fr), Leçon 25, diagrammes p.102, solutions p.124 ; auto-extrait (appariement moteur) ; parenthèses non rejouées"
+ },
+ {
+  "id": "25.6",
+  "cat": "🔒 Tactique de blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   12,
+   13,
+   14,
+   16,
+   17,
+   18,
+   19,
+   23,
+   24
+  ],
+  "w": [
+   25,
+   26,
+   27,
+   28,
+   32,
+   35,
+   37,
+   38,
+   43
+  ],
+  "coups": "38-33 23-29 35-30 29x49 25-20 14x34 28-22 17x28 32x14 49x21 26x39",
+  "solTxt": "38-33 23-29 35-30 29x49 25-20 14x34 28-22 17x28 32x14 49x21 26x39",
+  "note": "FMJD Cours 1 (fr), Leçon 25, diagrammes p.102, solutions p.124 ; auto-extrait (appariement moteur)"
+ },
+ {
+  "id": "25.7",
+  "cat": "🔒 Tactique de blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   8,
+   11,
+   13,
+   14,
+   16,
+   17,
+   19,
+   21,
+   24,
+   26
+  ],
+  "w": [
+   22,
+   25,
+   27,
+   28,
+   32,
+   33,
+   35,
+   37,
+   41,
+   49
+  ],
+  "coups": "41-36 8-12 37-31 26x37 32x41 21x23 25-20 17x39 20x20",
+  "solTxt": "41-36 8-12 37-31 26x37 32x41 21x23 25-20 17x39 20x20",
+  "note": "FMJD Cours 1 (fr), Leçon 25, diagrammes p.102, solutions p.124 ; auto-extrait (appariement moteur)"
+ },
+ {
+  "id": "25.8",
+  "cat": "🔒 Tactique de blocage",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   12,
+   13,
+   16,
+   17,
+   18,
+   19,
+   21,
+   23,
+   24,
+   25
+  ],
+  "w": [
+   27,
+   28,
+   30,
+   32,
+   35,
+   36,
+   37,
+   38,
+   39,
+   43
+  ],
+  "coups": "39-34 24-29 36-31 29x40 35x44 25x34 31-26",
+  "solTxt": "39-34 24-29 36-31 29x40 35x44 25x34 31-26",
+  "note": "FMJD Cours 1 (fr), Leçon 25, diagrammes p.102, solutions p.124 ; auto-extrait (appariement moteur)"
+ }
+]
