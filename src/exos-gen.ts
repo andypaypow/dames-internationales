@@ -1,5 +1,5 @@
 /* GÉNÉRÉ par scripts/exo-theme.ts — ne pas éditer à la main.
- * Sources : exos.json.valides de exercices-wip/ (thèmes : aile16, aile30, arche09, autres11, base19, blocage24, blocage25, bois28, bombe08, collage14, combi02, dame15, dame21, damepions34, ench29, enfermes, faiblesse26, forcing12, formations23, mazette04, menace18, napoleon10, opposition33, philippe03, piege20, piege38, pratique40, repos13, ricochet07, royal05, sacrifice17, tactique39, talon06) */
+ * Sources : exos.json.valides de exercices-wip/ (thèmes : aile16, aile30, arche09, autres11, base19, blocage24, blocage25, bois28, bombe08, collage14, combi02, dame15, dame21, damePrise22, damepions34, ench29, enfermes, faiblesse26, forcing12, formations23, mazette04, menace18, napoleon10, opposition33, philippe03, piege20, piege38, pratique40, repos13, ricochet07, royal05, sacrifice17, tactique39, talon06) */
 import type { Exo } from './exercices';
 
 export const EXOS_THEMES: Exo[] = [
@@ -571,6 +571,32 @@ export const EXOS_THEMES: Exo[] = [
     paths: [[28, 22], [17, 28, 37, 48], [33, 29], [24, 33], [39, 28], [23, 32, 21], [26, 17, 8], [13, 2], [40, 35], [48, 30], [35, 24, 13, 4]],
     solTxt: "28-22 17x48 33-29 24x33 39x28 23x21 26x8 13x2 40-35 48x30 35x4",
     note: "FMJD Cours 1 (fr) Leçon 21, diagrammes p.85-86, solutions p.122 ; auto-extrait (appariement moteur)", },
+  /* ===== damePrise22 ===== */
+  { id: "22.1", cat: "👑 La dame est prise", goal: 'gain', trait: 'w',
+    b: [1, 10, 12, 13, 16, 18, 19, 24], w: [27, 28, 32, 33, 34, 38, 40, 42],
+    paths: [[27, 22], [18, 27], [32, 21], [16, 27], [38, 32], [27, 38, 47], [28, 22], [47, 29], [34, 23, 14, 5], [13, 19], [5, 23, 7], [1, 12], [40, 34]],
+    solTxt: "27-22 18x27 32x21 16x27 38-32 27x47 28-22 47x29 34x5 13-19 5x7 1x12 40-34 — gagnant pour les blancs (double opposition)",
+    note: "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)", },
+  { id: "22.2", cat: "👑 La dame est prise", goal: 'gain', trait: 'w',
+    b: [1, 10, 12, 13, 16, 18, 19, 24], w: [28, 31, 32, 33, 34, 37, 38, 40],
+    paths: [[28, 22], [18, 27, 36], [37, 31], [36, 27], [32, 21], [16, 27], [38, 32], [27, 38, 29], [34, 23, 14, 5], [13, 19], [5, 23, 7], [1, 12]],
+    solTxt: "28-22 18x36 37-31 36x27 32x21 16x27 38-32 27x29 34x5 13-19 5x7 1x12 — gagnant pour les NOIRS — le livre montre l'erreur blanche",
+    note: "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)", },
+  { id: "22.3", cat: "👑 La dame est prise", goal: 'gain', trait: 'w',
+    b: [3, 7, 8, 14, 19, 20, 35, 45], w: [22, 27, 28, 34, 39, 43, 44, 50],
+    paths: [[28, 23], [19, 28, 17], [34, 30], [35, 24], [27, 22], [17, 28], [44, 40], [45, 34], [39, 30, 19, 10]],
+    solTxt: "28-23 19x17 34-30 35x24 27-22 17x28 44-40 45x34 39x10 — 28-23 19x17 34-30 35x24 44-40? perd ; 27-22! gagne",
+    note: "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)", },
+  { id: "22.7", cat: "👑 La dame est prise", goal: 'gain', trait: 'w',
+    b: [3, 12, 13, 16, 18, 19, 23, 24, 29], w: [27, 30, 32, 35, 37, 38, 40, 42, 43],
+    paths: [[27, 22], [18, 27], [32, 21], [16, 27], [40, 34], [29, 40], [35, 44], [24, 35], [44, 40], [35, 44], [43, 39], [44, 33], [38, 29, 18, 7], [27, 32], [37, 28], [19, 23], [28, 19, 8], [3, 12, 1], [42, 38]],
+    solTxt: "27-22 18x27 32x21 16x27 40-34 29x40 35x44 24x35 44-40 35x44 43-39 44x33 38x7 27-32 37x28 19-23 28x8 3x1 42-38 — remise (le « coup de dame » blanc n'est pas gagnant)",
+    note: "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)", },
+  { id: "22.8", cat: "👑 La dame est prise", goal: 'gain', trait: 'w',
+    b: [1, 10, 12, 13, 16, 18, 19, 20, 26], w: [27, 28, 30, 32, 34, 37, 42, 43, 47],
+    paths: [[30, 24], [19, 30, 39, 48], [28, 23], [18, 29], [27, 21], [16, 27, 38], [42, 33, 24, 15, 4], [48, 31], [4, 18, 36], [26, 31], [36, 18, 7], [1, 12], [47, 42]],
+    solTxt: "30-24 19x48 28-23 18x29 27-21 16x38 42x4 48x31 4x36 26-31 36x7 1x12 47-42 — calculer le coup pour aller en 4! (opposition) B+",
+    note: "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)", },
   /* ===== damepions34 ===== */
   { id: "34.1", cat: "👑 Dame contre pions", goal: 'gain', trait: 'w',
     b: [15, 19], w: [],

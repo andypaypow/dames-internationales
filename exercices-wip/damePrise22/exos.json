@@ -1,0 +1,151 @@
+[
+ {
+  "id": "22.1",
+  "cat": "👑 La dame est prise",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   1,
+   10,
+   12,
+   13,
+   16,
+   18,
+   19,
+   24
+  ],
+  "w": [
+   27,
+   28,
+   32,
+   33,
+   34,
+   38,
+   40,
+   42
+  ],
+  "coups": "27-22 18x27 32x21 16x27 38-32 27x47 28-22 47x29 34x5 13-19 5x7 1x12 40-34",
+  "solTxt": "27-22 18x27 32x21 16x27 38-32 27x47 28-22 47x29 34x5 13-19 5x7 1x12 40-34 — gagnant pour les blancs (double opposition)",
+  "note": "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)"
+ },
+ {
+  "id": "22.2",
+  "cat": "👑 La dame est prise",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   1,
+   10,
+   12,
+   13,
+   16,
+   18,
+   19,
+   24
+  ],
+  "w": [
+   28,
+   31,
+   32,
+   33,
+   34,
+   37,
+   38,
+   40
+  ],
+  "coups": "28-22 18x36 37-31 36x27 32x21 16x27 38-32 27x29 34x5 13-19 5x7 1x12",
+  "solTxt": "28-22 18x36 37-31 36x27 32x21 16x27 38-32 27x29 34x5 13-19 5x7 1x12 — gagnant pour les NOIRS — le livre montre l'erreur blanche",
+  "note": "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)"
+ },
+ {
+  "id": "22.3",
+  "cat": "👑 La dame est prise",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   3,
+   7,
+   8,
+   14,
+   19,
+   20,
+   35,
+   45
+  ],
+  "w": [
+   22,
+   27,
+   28,
+   34,
+   39,
+   43,
+   44,
+   50
+  ],
+  "coups": "28-23 19x17 34-30 35x24 27-22 17x28 44-40 45x34 39x10",
+  "solTxt": "28-23 19x17 34-30 35x24 27-22 17x28 44-40 45x34 39x10 — 28-23 19x17 34-30 35x24 44-40? perd ; 27-22! gagne",
+  "note": "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)"
+ },
+ {
+  "id": "22.7",
+  "cat": "👑 La dame est prise",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   3,
+   12,
+   13,
+   16,
+   18,
+   19,
+   23,
+   24,
+   29
+  ],
+  "w": [
+   27,
+   30,
+   32,
+   35,
+   37,
+   38,
+   40,
+   42,
+   43
+  ],
+  "coups": "27-22 18x27 32x21 16x27 40-34 29x40 35x44 24x35 44-40 35x44 43-39 44x33 38x7 27-32 37x28 19-23 28x8 3x1 42-38",
+  "solTxt": "27-22 18x27 32x21 16x27 40-34 29x40 35x44 24x35 44-40 35x44 43-39 44x33 38x7 27-32 37x28 19-23 28x8 3x1 42-38 — remise (le « coup de dame » blanc n'est pas gagnant)",
+  "note": "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)"
+ },
+ {
+  "id": "22.8",
+  "cat": "👑 La dame est prise",
+  "goal": "gain",
+  "trait": "w",
+  "b": [
+   1,
+   10,
+   12,
+   13,
+   16,
+   18,
+   19,
+   20,
+   26
+  ],
+  "w": [
+   27,
+   28,
+   30,
+   32,
+   34,
+   37,
+   42,
+   43,
+   47
+  ],
+  "coups": "30-24 19x48 28-23 18x29 27-21 16x38 42x4 48x31 4x36 26-31 36x7 1x12 47-42",
+  "solTxt": "30-24 19x48 28-23 18x29 27-21 16x38 42x4 48x31 4x36 26-31 36x7 1x12 47-42 — calculer le coup pour aller en 4! (opposition) B+",
+  "note": "FMJD Cours 1 (fr) Leçon 22, diagrammes p.90, solutions p.122 ; auto-extrait (appariement moteur) ; 22.4-22.6 écartés (diagrammes non extractibles)"
+ }
+]

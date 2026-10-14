@@ -49,9 +49,11 @@ Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run d
 - **v27** : 25 (blocage, 8 exos p.102), 26 (faiblesse, 8 exos p.106), 28 (marchand
   de bois, 8 exos p.114), 29 (enchaînement, 7 exos p.117, C29.5 F écarté) — sol
   p.124, appariement moteur. **284/284 tests.**
-- **Reste** : 22 seule (p.90 hachurée, crops manuels). L27 = noms d'enchaînements
-  (pas de lignes jouables) ; L1 = notation ; L30 = doublon de aile30 existant.
-  Le FMJD Cours 1 est sinon intégralement couvert.
+- **v28** : 22 (la dame est prise, 5 exos p.90 — 22.4/22.5/22.6 écartés, diagrammes
+  non extractibles) ; 289/289 tests.
+- **FMJD Cours 1 : couverture terminée.** Non implémentables : L1 (notation),
+  L27 (noms d'enchaînements), L30 (= aile30 existant), 22.4-22.6, C11.8, C24.8,
+  16.2-16.8 + lignes tronquées notées dans les fiches.
 
 ## ✅ État (v23 — ↔️ Coup du ricochet FMJD + 📖 livre d'exercices)
 - **v23a exercices** : +8 exos « ↔️ Coup du ricochet » (FMJD Cours 1, Leçon 7,

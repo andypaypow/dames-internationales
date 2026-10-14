@@ -275,6 +275,12 @@ export const EXO_IMG: Record<string, string> = {
   'C29.6': '/exo-img/fmjd1-117.jpg',
   'C29.7': '/exo-img/fmjd1-117.jpg',
   'C29.8': '/exo-img/fmjd1-117.jpg',
+  // FMJD Cours 1, Leçon 22
+  '22.1': '/exo-img/fmjd1-90.jpg',
+  '22.2': '/exo-img/fmjd1-90.jpg',
+  '22.3': '/exo-img/fmjd1-90.jpg',
+  '22.7': '/exo-img/fmjd1-90.jpg',
+  '22.8': '/exo-img/fmjd1-90.jpg',
   '16.1': '/exo-img/fmjd1-62.jpg',
   // FMJD Cours 1, Leçon 17 — Sacrifice / gambit (p.66)
   '17.1': '/exo-img/fmjd1-66.jpg',
