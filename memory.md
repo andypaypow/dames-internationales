@@ -44,9 +44,11 @@ Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run d
   les candidats sont imprimés SOUS les diagrammes), 20 (piéger, 8 exos p.79, sol p.82).
   Menaces (18.1/3/6/8/12, 19.x) : path = coup clé seul. 18.9 (livre 9-13/14 →
   diagramme 8-13), 20.6 tronqué. 231/231 tests.
-- **Reste** : Leçon 21 (C21.1-21.16, diag p.85-86), 22 (la dame est prise),
-  23 (C23.1-23.8 diag p.94 + Exercices 23.x, sol p.123+), 25-30 (25.x sol p.124,
-  26.x, 28.x marchand de bois C28.1+…). Leçon 1 = notation (rien à implémenter).
+- **v26** : 21 (coups de dame, 16 exos p.85-86, sol p.122) + 23 (formations,
+  6 exos p.94, sol p.123) — appariement moteur systématique. 253/253 tests.
+- **Reste** : 22 (p.90 hachurée, crops manuels à refaire), 25 (8, sol p.124,
+  diag à localiser p.99-105), 26 (26.1-26.8, sol p.124), 28 (C28.1-28.8, sol p.124),
+  29 (C29.x, sol p.124) ; L27 = noms d'enchaînements (pas de lignes) ; L1 = notation.
 
 ## ✅ État (v23 — ↔️ Coup du ricochet FMJD + 📖 livre d'exercices)
 - **v23a exercices** : +8 exos « ↔️ Coup du ricochet » (FMJD Cours 1, Leçon 7,
