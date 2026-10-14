@@ -5,12 +5,30 @@ Application web de dames internationales (10×10, 20 pions, règles FID).
 Repo Vite+TS : `src/{regles,ia,app,exercices,exos-gen,exo-img}.ts` · `npm run dev/test/deploy`.
 
 ## 📚 Sources PDF archivées (docs/)
-- `docs/24775-cours-de-jeu.pdf` (Toulouse) : C21.x, C30.x, C31.x · `docs/24801.pdf`
+- `docs/24176-cours-partie1.pdf` + `docs/24591-cours-partie2.pdf` (Toulouse, = cours FMJD déjà intégré) · `docs/24775-cours-de-jeu.pdf` (Toulouse) : C21.x, C30.x, C31.x · `docs/24801.pdf`
   (fins de parties) : 33.x, 34.x, 38.x, 39.x, 40.x · `docs/enchainements-gregoire-pesente-ffjd.pdf`.
 - `docs/fmjd-cours1-fr.pdf` — **FMJD Cours 1 (fr)**, 168 p. : Leçons 1-30+. Solutions :
   L1-10 p.36-38, L11-20 p.80-82, L21-30 p.123+. Diagrammes dans les leçons.
   ⚠️ /tmp volatile : repartir de ces copies (pipeline : render <pdf>).
 - 🧰 **Skill `/exercices-dames`** : pipeline complet d'ajout d'exercices — à utiliser.
+
+## ✅ État (v29 — PDF Toulouse 24801 ch.35/36/37 : +19 exos)
+- **v29** : derniers chapitres manquants de `docs/24801.pdf` — 35 (📏 grande diagonale,
+  8 exos p.22, sol p.53), 36 (🎲 trictrac, 3 exos sains p.27-28, sol p.54), 37 (🟥
+  rectangles, 8 exos p.34, sol p.54) → thèmes `exercices-wip/{diagonale35,trictrac36,
+  rectangles37}`. 308/308 tests. Déployé (bundle index-DKNcN-wM.js).
+- **PDF Toulouse = cours Goedemoed FMJD** : 24176 (leçons 1-10) et 24591 (11-20) sont
+  LA MÊME série que `docs/fmjd-cours1-fr.pdf` déjà intégrée (v23-v28) — mêmes numéros
+  C-x.y. Rien à ajouter de ces deux-là (écartés historiques : 16.2-16.8, C11.8, C24.8,
+  22.4-22.6). **Les 3 PDF demandés sont donc couverts.**
+- Leçons v29 : ⚠️ le merge reprend `cat` des exos.json — si on réécrit exos.json sans
+  le champ `cat`, tout part en « 🎯 Thème » → corriger `src/exos-gen.ts` (fait) ou
+  garder `cat` dans chaque entrée. Solutions ch.35-37 du livre très abrégées/fausses :
+  « 28-23 »→33-28 (35.6), « 35-30 »→34-30 (35.8), « 39x47 »→29-47 (37.4), « 29-1 » de
+  37.8 = rafle forcée 29x…x1 ; 37.5/37.6/37.7/37.8 tronqués au coup clé (prise
+  majoritaire forcée rend la suite du livre injouable). 36 : 5 écartés (36.1/36.4/
+  36.5/36.6/36.8 lignes injouables, vérifiées au moteur), 36.3 réparé (« 7-2 »→« 8-2 »,
+  fin → prise forcée 28-19).
 
 ## ✅ État (v24 — Leçons 8-17 FMJD : 82 nouveaux exercices)
 - **v24** : leçons 8 (bombe), 9 (arche), 10 (Napoléon), 11 (autres coups), 12 (forcing),

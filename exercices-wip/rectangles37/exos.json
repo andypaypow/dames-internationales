@@ -1,0 +1,143 @@
+[
+ {
+  "id": "37.1",
+  "b": [],
+  "w": [],
+  "bd": [
+   2
+  ],
+  "wd": [
+   18,
+   37,
+   44
+  ],
+  "trait": "w",
+  "coups": "44-35 2-16 18-7 16x2 37-14",
+  "solTxt": "44-35 2-16 18-7 16x2 37-14 +",
+  "note": "PDF 24801 ch.37 rectangles"
+ },
+ {
+  "id": "37.2",
+  "b": [],
+  "w": [],
+  "bd": [
+   8
+  ],
+  "wd": [
+   18,
+   44,
+   48
+  ],
+  "trait": "w",
+  "coups": "44-49",
+  "solTxt": "44-49 menace 48-30 18-40 + et 49-21 18-31 +",
+  "note": "PDF 24801 ch.37 — coup clé seul (double menace)"
+ },
+ {
+  "id": "37.3",
+  "b": [],
+  "w": [],
+  "bd": [
+   26,
+   32
+  ],
+  "wd": [
+   25,
+   27,
+   38
+  ],
+  "trait": "w",
+  "coups": "38-29 32x21 29-12",
+  "solTxt": "38-29 32x21 29-12 +",
+  "note": "PDF 24801 ch.37 rectangles"
+ },
+ {
+  "id": "37.4",
+  "b": [],
+  "w": [],
+  "bd": [
+   4
+  ],
+  "wd": [
+   32,
+   37,
+   41
+  ],
+  "trait": "w",
+  "coups": "41-36 4-15 32-27 15-47 27-4 47-29 37-42 29-47 4-15",
+  "solTxt": "41-36 4-15 32-27 15-47 27-4 47-29 37-42 39x47 4-15 +",
+  "note": "PDF 24801 ch.37 — «39x47» du livre corrigé en 29-47 (le roi noir est en 29)"
+ },
+ {
+  "id": "37.5",
+  "b": [],
+  "w": [],
+  "bd": [
+   49
+  ],
+  "wd": [
+   11,
+   12,
+   19
+  ],
+  "trait": "w",
+  "coups": "19-2 49-44",
+  "solTxt": "19-2 49-44 11-6 44-49 2-16 49-35 6-1 35-44 1-6 44-35 16-2 35-49 12-21 6-11 +",
+  "note": "PDF 24801 ch.37 — suite du livre (11-6…) injouable : prise majoritaire forcée 11x50 dans la position ; tronqué au point de divergence"
+ },
+ {
+  "id": "37.6",
+  "b": [],
+  "w": [],
+  "bd": [
+   32,
+   35,
+   38
+  ],
+  "wd": [
+   18,
+   44,
+   48
+  ],
+  "trait": "w",
+  "coups": "18-12",
+  "solTxt": "18-12 32-37 48x26 35-40 44x35 38-43 12-8 … +",
+  "note": "PDF 24801 ch.37 — coup clé du livre ; suite injouable (prise majoritaire forcée côté noir), tronqué"
+ },
+ {
+  "id": "37.7",
+  "b": [],
+  "w": [],
+  "bd": [
+   44,
+   45
+  ],
+  "wd": [
+   2,
+   19,
+   32,
+   34
+  ],
+  "trait": "w",
+  "coups": "2-11",
+  "solTxt": "2-11 45-50 11-16 44-49 29-1 49x27 16x49 50-28 49-44 28x50 1-6 +",
+  "note": "PDF 24801 ch.37 — coup clé du livre (2-11) ; suite injouable : la noire doit capturer 45x34… (prise majoritaire), tronqué"
+ },
+ {
+  "id": "37.8",
+  "b": [],
+  "w": [],
+  "bd": [
+   7
+  ],
+  "wd": [
+   5,
+   29,
+   48
+  ],
+  "trait": "w",
+  "coups": "29-1",
+  "solTxt": "5-23 7-11 29-1 11-16 29-23 16-2 49-35 2-16 1-7 16x2 23-19 +",
+  "note": "PDF 24801 ch.37 — la vraie combinaison est la rafle forcée 29x…x1 (le livre l'abrège «29-1» au milieu d'une suite incohérente) ; blancs gagnent"
+ }
+]
